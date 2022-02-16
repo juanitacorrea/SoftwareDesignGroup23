@@ -1,0 +1,25 @@
+<form action="finalSubmissonForm.html" method="post">
+    <p>
+      <label for="gallonsR">Gallons Requested:</label>
+      <input type="text" id="gallonsR" name="gallonsR" placeholder="Input gallons requested">
+    </p>
+    <p>
+     <label for="address">Delivery Address: </label>
+     <textarea id="address" name="address" placeholder="Fill in Delivery Address" rows="2" cols="20"></textarea>
+   </p>
+    <p>
+      <label for="deliveryDate">Delivery Date:</label>
+      <input type="date" id="deliveryDate" name="deliveryDate">
+    </p>
+    <p>
+        <label for="pricePerGallon">Suggested Price/Gallon:</label>
+        <input type="text" value="$2.80" readonly/>
+      </p>
+      <p>
+        <label for="total">Total Amount Due:</label>
+        <input type="text" value="Gallons*Price/Gallon" readonly>
+      </p>
+    <p>
+      <input type="submit" value="Submit">
+    </p>
+ </form>
