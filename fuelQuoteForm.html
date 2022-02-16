@@ -1,3 +1,11 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Fuel Quote Form </title> 
+    </head>
+<h1>FUEL QUOTE FORM</h1>
+
 <form action="finalSubmissonForm.html" method="post">
     <p>
       <label for="gallonsR">Gallons Requested:</label>
@@ -12,14 +20,16 @@
       <input type="date" id="deliveryDate" name="deliveryDate">
     </p>
     <p>
-        <label for="pricePerGallon">Suggested Price/Gallon:</label>
+        <label for="pricePerGallon">Suggested Price/Gallon:</label><br>
         <input type="text" value="$2.80" readonly/>
       </p>
       <p>
-        <label for="total">Total Amount Due:</label>
-        <input type="text" value="Gallons*Price/Gallon" readonly>
+        <label for="tota">Total Amount due:</label><br>
+        <textarea readonly id ="total" rows="4" cols="30">Amount due will be calculated (gallons required*suggested price per gallon) when the pricing module is ready!</textarea>
       </p>
     <p>
       <input type="submit" value="Submit">
     </p>
  </form>
+
+ </html>
