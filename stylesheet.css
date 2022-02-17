@@ -1,0 +1,8 @@
+h1
+{
+    font-size: 16pt;
+    font-family: monospace;
+    color: blue;
+    border: 2px solid rgb(0, 255, 0);
+    padding: 2px;
+}
