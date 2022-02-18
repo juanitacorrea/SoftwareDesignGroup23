@@ -198,6 +198,7 @@ fqsflabels
 
 #cityInput {
     border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
     border: 3px solid rgb(68, 0, 255);
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
@@ -208,6 +209,7 @@ fqsflabels
 
 #streetInput {
     border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
     border: 3px solid rgb(68, 0, 255);
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
@@ -218,6 +220,7 @@ fqsflabels
 
 #stateInput {
     border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
     border: 3px solid rgb(68, 0, 255);
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
@@ -228,6 +231,7 @@ fqsflabels
 
 #zipInput {
     border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
     border: 3px solid rgb(68, 0, 255);
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
