@@ -15,14 +15,14 @@
 <form action="finalSubmissonForm.html" method="post">
     <p>
       <fqfLabels for="gallonsR">Gallons Requested&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-      <input type="text" id="gallonsInputBoxes" name="gallonsR" placeholder="*Input gallons requested">
+      <input type="number" id="gallonsInputBoxes" name="gallonsR" placeholder="*Input gallons requested">
     </p>
     <p>
      <fqfLabels for="address">Delivery Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </fqfLabels>
-     <input type="text" id="cityInput" name="cityInput" placeholder="City"><br>
-     <input type="text" id="streetInput" name="streetInput" placeholder="Street"><br>
-     <input type="text" id="stateInput" name="stateInput" placeholder="State">
-     <input type="text" id="zipInput" name="zipInput" placeholder="ZIP">
+     <input type="text" value="Houston" id="cityInput" readonly/> <br>
+     <input type="text" value="4800 Calhoun Road" id="streetInput" readonly/> <br>
+     <input type="text" value="Texas" id="stateInput" readonly/>
+     <input type="text" value="77004" id="zipInput" readonly/>
    </p>
     <p>
       <fqfLabels for="deliveryDate">Delivery Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
@@ -30,11 +30,11 @@
     </p>
     <p>
         <fqfLabels for="pricePerGallon">Suggested Price/Gallon</fqfLabels>
-        <input type="text" value="$2.80" id ="sugPriceInputBoxes" readonly/>
+        <input type="number" value= 2.80 id ="sugPriceInputBoxes" readonly/>
     </p>
     <p>
-        <fqfLabels for="tota">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-        <input type = "text" readonly id ="total" rows="4" cols="30" placeholder = "Enter values to calculate"></textarea>
+        <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
+        <input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter values to calculate"></textarea> <readonly>
     </p>
     <p>
         <input id = "loginorsubmit" type="button" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">

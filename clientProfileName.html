@@ -9,19 +9,19 @@
 <form action="action_page.php" method="get">
     <p>
         <label for="name"></label>
-        <input type="text" id="inputBoxes" name="name" placeholder="*Enter Full Name" required>
+        <input type="text" id="inputBoxes" name="name" placeholder="*Enter Full Name" required maxlength="50">
     </p> 
     <p>
         <label for="address"></label>
-        <input type="text" id="inputBoxes" name="adress" placeholder="*Address Line 1" required>
+        <input type="text" id="inputBoxes" name="adress" placeholder="*Address Line 1" required maxlength="100">
     </p> 
     <p>
         <label for="address"></label>
-        <input type="text" id="inputBoxes" name="address" placeholder="Address Line 2">
+        <input type="text" id="inputBoxes" name="address" placeholder="Address Line 2" maxlength="100">
     </p>
     <p>
         <label for="city"></label>
-        <input type="text" id="inputBoxes" name="city" placeholder="*City" required>
+        <input type="text" id="inputBoxes" name="city" placeholder="*City" required maxlength="100">
     </p> 
     <p>
         <label for="state"></label>
@@ -29,7 +29,7 @@
     </p> 
     <p>
         <label for="zipcode"></label>
-        <input type="number" id="inputBoxes" name="zipcode" placeholder="*Zipcode" required>
+        <input type="number" id="inputBoxes" name="zipcode" placeholder="*Zipcode" required maxlength="9" minlength="5">
     </p> 
     <p>
         <input type="submit" value="Submit" id = "loginorsubmit">
