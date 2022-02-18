@@ -2,31 +2,37 @@
 <html lang="en">
     <link rel="stylesheet" href="stylesheet.css">
 
-<body>
-    <a href="login.html">Go Back</a><br>
-</body>
+
 <form action="action_page.php">
     
-    <h1>Client Registration</h1>
-    <p>Please Fill In To Create An Account</p>
+    <h1>Sign Up<span style = "color:rgb(68, 0, 255); font-size: 24pt;">.</span></h1>
+    <instructionalUnderscore>Please fill in the info to create an account</instructionalUnderscore>
+    <br>
+    <br>
     <div class="container"></div>
 
-        <label for="username">Username:</label>
-        <input type="text" placeholder="Enter Username" name="username" id="username" required>
+        <label for="username"></label>
+        <input type="text" placeholder="Enter Username" name="username" id="usernameInputBoxes" required>
         <br>
         <br>
 
-        <label for="psq"><b>Password:</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+        <label for="psw"><b></b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="usernameInputBoxes" required>
         <br>
         <br>
 
-        <label for="psw-repeat"><b>Repeat Password:</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw" id="psw" required>
+        <label for="psw-repeat"><b></b></label>
+        <input type="password" placeholder="Repeat Password" name="psw" id="usernameInputBoxes" required>
         <br>
         <br>
 
-        <input type="button" value="Submit" onclick="location.href = 'login.html';">
+        <input type="button" id = "loginorsubmit" value="Submit" onclick="location.href = 'login.html';">
 </form>
+
+<body>
+    <br>
+    <labelPretext for="Register"><b>Already have an account?</b></labelPretext>
+    <a id = "normalLink" href="login.html">Login</a><br>
+</body>
 
 </html>
