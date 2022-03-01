@@ -7,34 +7,48 @@
     </head>
 
 <body>
-  <p><a href="menu.html">Go Back</a></p>
-    <h1>FUEL QUOTE FORM</h1>
+    <h1>Fuel Quote Form<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
+    <instructionalUnderscore>Fill the data fields to revieve a quote.</instructionalUnderscore>
+
 </body>
 
 <form action="finalSubmissonForm.html" method="post">
     <p>
-      <label for="gallonsR">Gallons Requested:</label>
-      <input type="text" id="gallonsR" name="gallonsR" placeholder="Input gallons requested">
+      <fqfLabels for="gallonsR">Gallons Requested&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
+      <input type="number" id="gallonsInputBoxes" name="gallonsR" placeholder="*Input gallons requested">
     </p>
     <p>
-     <label for="address">Delivery Address: </label>
-     <textarea id="address" name="address" placeholder="Fill in Delivery Address" rows="2" cols="20"></textarea>
+     <fqfLabels for="address">Delivery Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </fqfLabels>
+     <input type="text" value="Houston" id="cityInput" readonly/> <br>
+     <input type="text" value="4800 Calhoun Road" id="streetInput" readonly/> <br>
+     <input type="text" value="Texas" id="stateInput" readonly/>
+     <input type="text" value="77004" id="zipInput" readonly/>
    </p>
     <p>
-      <label for="deliveryDate">Delivery Date:</label>
-      <input type="date" id="deliveryDate" name="deliveryDate">
+      <fqfLabels for="deliveryDate">Delivery Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
+      <input type="date" id="delDateInputBoxes" name="deliveryDate">
     </p>
     <p>
-        <label for="pricePerGallon">Suggested Price/Gallon:</label><br>
-        <input type="text" value="$2.80" readonly/>
-      </p>
-      <p>
-        <label for="tota">Total Amount due:</label><br>
-        <textarea readonly id ="total" rows="4" cols="30">Amount due will be calculated (gallons required*suggested price per gallon) when the pricing module is ready!</textarea>
-      </p>
-      <p>
-        <input type="button" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">
-     </p>
+        <fqfLabels for="pricePerGallon">Suggested Price/Gallon</fqfLabels>
+        <input type="number" value= 2.80 id ="sugPriceInputBoxes" readonly/>
+    </p>
+    <p>
+        <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
+        <input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly>
+    </p>
+    <p>
+        <input id = "loginorsubmit" type="button" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">
+    </p>
   </form>
+  <body>
+    <br>
+    <labelPretext for="Return"><b>Return to</b></labelPretext>
+    <a id = "normalLink" href="menu.html">menu</a><br>
+
+    <labelPretext><span style = "color:rgb(68, 0, 255); font-size: 18pt;">*</span>required field</labelPretext>
+
+</body>
 
  </html>
+
+ 
