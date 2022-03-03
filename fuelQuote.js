@@ -2,13 +2,13 @@
 //IN FUEL QUOTOE HTML GIVE ELEMENTS A SPECIFIC ID
 //create a function that calculates the total amount due (gallons*price)
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
+
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
     var gals = gallonsRequested;
     var price = sugPriceInputBoxes;
     var amountDue = gals * price;
     return amountDue;
-
 }
 function inputInformation() 
 {
@@ -19,9 +19,15 @@ function inputInformation()
    const zip = document.getElementById('zipInput');
    const delDate = document.getElementById('delDateInputBoxes');
    const sugPriceInputBoxes = document.getElementById('sugPriceInputBoxes');
-   let AmountDue= calcAmount(gallonsRequested, sugPriceInputBoxes);
    let delAddress= city + "," + street + "," + state+ "," + zip;
+   const error = document.getElementById('formErrors');
    let errorsFound = false;
+
+   //didnt work but must add it to the fuelQuoteForm.html
+   //let AmountDue= calcAmount(gallonsRequested, sugPriceInputBoxes);
+   //const totalAmount=document.getElementById('totalAmount');
+   //totalAmount.appendChild(AmountDue);
+
    
    if (!gallonsRequested.value) //makes sure that you inputted something in the name box
    {
