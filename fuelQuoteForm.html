@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title> Fuel Quote Form </title> 
+        <script src="fuelQuote.js" defer></script>
     </head>
 
 <body>
@@ -34,10 +35,10 @@
     </p>
     <p>
         <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-        <input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly>
+        <div id ="totalAmount"></div>
     </p>
     <p>
-        <input id = "loginorsubmit" type="submit" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">
+        <input id = "submit" type="submit" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">
     </p>
     <br>
     <div id="formErrors"></div>
