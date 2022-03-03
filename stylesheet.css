@@ -72,6 +72,7 @@ labelPretext
     height: 40px;    
 }
 #usernameInputBoxes {
+    color: rgba(255, 255, 255, 0.582);
     border-radius: 14px;
     border: 0px solid powderblue;
     background: rgba(255, 255, 255, 0.151);
@@ -79,8 +80,10 @@ labelPretext
     width: 200px;
     height: 20px;    
 }
+
 
 #passwordInputBoxes {
+    color: rgba(255, 255, 255, 0.582);
     border-radius: 14px;
     border: 0px solid powderblue;
     background: rgba(255, 255, 255, 0.151);
@@ -89,6 +92,15 @@ labelPretext
     height: 20px;    
 }
 
+#passwordCheckInputBoxes {
+    color: rgba(255, 255, 255, 0.582);
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
 ::placeholder
 {
     color: rgba(255, 255, 255, 0.582);
@@ -101,7 +113,21 @@ labelPretext
     color: rgb(175, 146, 255); 
 }
 
+#formErrors {
+    font-size: 9pt;
+    color: rgb(175, 146, 255); 
+}
+
 #loginorsubmit {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgb(175, 146, 255);
+    padding: 10px; 
+    width: 218px;
+    height: 40px;    
+}
+
+#submit {
     border-radius: 14px;
     border: 0px solid powderblue;
     background: rgb(175, 146, 255);

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="stylesheet.css">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="register.js" defer></script>
+    </head>
+   
 
-
-<form action="action_page.php">
+<body>
     
     <h1>Sign Up<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
     <instructionalUnderscore>Please fill in the info to create an account</instructionalUnderscore>
@@ -17,22 +21,24 @@
         <br>
 
         <label for="psw"><b></b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="usernameInputBoxes" required>
+        <input type="password" placeholder="Enter Password" name="psw" id="passwordInputBoxes" required>
         <br>
         <br>
 
         <label for="psw-repeat"><b></b></label>
-        <input type="password" placeholder="Repeat Password" name="psw" id="usernameInputBoxes" required>
+        <input type="password" placeholder="Repeat Password" name="pswCheck" id="passwordCheckInputBoxes" required>
         <br>
         <br>
+        <input type="submit" id = "submit" value="Submit">
+        <br>
+        <br>
+        <div id="formErrors"></div>
+<!-- </body> -->
 
-        <input type="button" id = "loginorsubmit" value="Submit" onclick="location.href = 'login.html';">
-</form>
-
-<body>
-    <br>
-    <labelPretext for="Register"><b>Already have an account?</b></labelPretext>
-    <a id = "normalLink" href="login.html">Login</a><br>
+<!-- <body> -->
+        <br>
+        <labelPretext for="Register"><b>Already have an account?</b></labelPretext>
+        <a id = "normalLink" href="login.html">Login</a><br>
 </body>
 
 </html>
