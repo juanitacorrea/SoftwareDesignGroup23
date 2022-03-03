@@ -32,21 +32,21 @@ function inputInformation()
       nameErr.textContent = "Missing Gallons Requested.";
       error.appendChild(nameErr);
    }
-   if (!delDate.value) //makes sure that you inputted something in the name box
-   {
-      errorsFound = true;
-      delDate.style = "border: 2px solid red;";
-      error.style = "display: block";
-      const nameErr = document.createElement("li");
-      nameErr.textContent = "Missing Date";
-      error.appendChild(nameErr);
-   }
+//    if (!delDate.value) //makes sure that you inputted something in the name box
+//    {
+//       errorsFound = true;
+//       delDate.style = "border: 2px solid red;";
+//       error.style = "display: block";
+//       const nameErr = document.createElement("li");
+//       nameErr.textContent = "Missing Date";
+//       error.appendChild(nameErr);
+//    }
 
    if (errorsFound === false) 
    {
     //outputting into a text file
       
-      window.location.href = "finalSubmissionForm";
+      window.location.href = "finalSubmissionForm.html";
    }
    
 }
