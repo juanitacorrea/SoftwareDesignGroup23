@@ -1,11 +1,35 @@
-function checkForm() 
+var objPeople = new Array();
+user1 = new Object();
+user2 = new Object();
+user3 = new Object();
+user1 =
+   {
+      username: 'exxon',
+      password: 'Exxon&Mobil1'
+   };
+user2 =
+   {
+      username: 'chevron',
+      password: 'ChevronGas1!'
+   };
+user3 =
+   {
+      username: 'shell',
+      password: 'ShellOil&Gas1'
+   };
+objPeople.push(user1);
+objPeople.push(user2);
+objPeople.push(user3);
+
+
+function checkForm()
 {
    const name = document.getElementById('usernameInputBoxes');
-//    const email = document.getElementById('email');
    const password = document.getElementById('passwordInputBoxes');
    const passwordCheckInputBoxes = document.getElementById('passwordCheckInputBoxes');
    const error = document.getElementById('formErrors');
    let errorsFound = false;
+
    
    if (!name.value) //makes sure that you inputted something in the name box
    {
@@ -16,16 +40,6 @@ function checkForm()
       nameErr.textContent = "Missing full name.";
       error.appendChild(nameErr);
    }
-
-//    if (!email.value || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/.test(email.value)) //checks to make sure the email follows the general email structure (name+@+something.com)
-//    {
-//       errorsFound = true;
-//       email.style = "border: 2px solid red;";
-//       error.style = "display: block";
-//       const emailErr = document.createElement("li");
-//       emailErr.textContent = "Invalid or missing email address.";
-//       error.appendChild(emailErr);
-//    }
 
    if (password.value.length < 10 || password.value.length > 20) //checks to make sure the password is withing the length restrictions
    {
@@ -84,17 +98,19 @@ function checkForm()
       name.style = "border: 1px solid #aaa;";
       password.style = "border: 1px solid #aaa;";
       passwordCheckInputBoxes.style = "border: 1px solid #aaa;";
+
+      var userData = new Object();
+      userData={username:name.value, password:password.value};
+      objPeople.push(userData);
+      console.log(objPeople);
+      localStorage.setItem('users', JSON.stringify(objPeople));
       window.location.href = "login.html";
-
-
    }
-   
 }
-   
    
 document.getElementById("submit").addEventListener("click", function(event) 
 {
     checkForm(); 
-//Prevent default form action. DO NOT REMOVE THIS LINE
+   //Prevent default form action. DO NOT REMOVE THIS LINE
     event.preventDefault();
 });
