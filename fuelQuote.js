@@ -3,6 +3,10 @@
 //create a function that calculates the total amount due (gallons*price)
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
+window.sessionStorage //to access from sessionStorage (current user logged in)
+const userName = sessionStorage.getItem('username');
+console.log(userName);
+
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
     var gals = gallonsRequested;
@@ -50,7 +54,8 @@ function inputInformation()
 
    if (errorsFound === false) 
    {
-    //outputting into a text file
+    //outputting into local storage 
+
       
       window.location.href = "finalSubmissionForm.html";
    }
