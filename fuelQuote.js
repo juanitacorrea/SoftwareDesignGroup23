@@ -4,7 +4,7 @@
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
 window.sessionStorage //to access from sessionStorage (current user logged in)
-const userName = sessionStorage.getItem('username');
+const userName = sessionStorage.getItem('currentloggedin');
 console.log(userName);
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
@@ -55,8 +55,12 @@ function inputInformation()
    if (errorsFound === false) 
    {
     //outputting into local storage 
+      var userFuelQuote = new Object();
+      userFuelQuote={Gallons:gallonsRequested.value, Address:delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
+      objPeople.push(userFuelQuote);
+      console.log(userFuelQuote);
+      localStorage.setItem('quote', JSON.stringify(objPeople));
 
-      
       window.location.href = "finalSubmissionForm.html";
    }
    
@@ -66,6 +70,6 @@ function inputInformation()
 document.getElementById("submit").addEventListener("click", function(event) 
 {
     inputInformation(); 
-//Prevent default form action. DO NOT REMOVE THIS LINE
+   //Prevent default form action. DO NOT REMOVE THIS LINE
     event.preventDefault();
 });
