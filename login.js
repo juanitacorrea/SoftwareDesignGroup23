@@ -33,19 +33,16 @@
           nameErr.textContent = "Missing password.";
           error.appendChild(nameErr);
        }
+       
        isInLocal(name, password);
+       
        if (errorsFound === false && tester != 0)
        {
           error.style = "display: block";
           name.style = "border: 1px solid #aaa;";
           password.style = "border: 1px solid #aaa;";
           sessionStorage.setItem("currentloggedin", name.value);
-
-          
-          //window.location.href = "menu.html";
-
-         // var user =  object ();
-
+          window.location.href = "menu.html";
        }
        
     }

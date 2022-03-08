@@ -63,6 +63,46 @@ labelPretext
     width: 200px;
     height: 20px;    
 }
+#fullNameInputBoxes {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
+#address1InputBoxes {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
+#addres2InputBoxes {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
+#zipcodeInputBoxes {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
+#cityInputBoxes {
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
 #stateInputBoxes {
     border-radius: 14px;
     border: 0px solid powderblue;

@@ -5,17 +5,38 @@ user3 = new Object();
 user1 =
    {
       username: 'exxon',
-      password: 'Exxon&Mobil1'
+      password: 'Exxon&Mobil1',
+      fullName: "",
+      addrLine1: "",
+      addrLine2: "",
+      city: "",
+      state: "",
+      zip: "",
+      quotes: []
    };
 user2 =
    {
       username: 'chevron',
-      password: 'ChevronGas1!'
+      password: 'ChevronGas1!',
+      fullName: "",
+      addrLine1: "",
+      addrLine2: "",
+      city: "",
+      state: "",
+      zip: "",
+      quotes: []
    };
 user3 =
    {
       username: 'shell',
-      password: 'ShellOil&Gas1'
+      password: 'ShellOil&Gas1',
+      fullName: "",
+      addrLine1: "",
+      addrLine2: "",
+      city: "",
+      state: "",
+      zip: "",
+      quotes: []
    };
 objPeople.push(user1);
 objPeople.push(user2);
@@ -100,7 +121,7 @@ function checkForm()
       passwordCheckInputBoxes.style = "border: 1px solid #aaa;";
 
       var userData = new Object();
-      userData={username:name.value, password:password.value};
+      userData={username:name.value, password:password.value, fullName: "",addrLine1: "",addrLine2: "",city: "",state: "",quotes: []};
       objPeople.push(userData);
       console.log(objPeople);
       localStorage.setItem('users', JSON.stringify(objPeople));
