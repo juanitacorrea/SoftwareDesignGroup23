@@ -58,8 +58,8 @@ function inputInformation()
       tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
       quotes.push(tempQuote);
    
-      console.log(userFuelQuote);
-      localStorage.setItem('quote', JSON.stringify(userFuelQuote));
+      console.log(tempQuote);
+      localStorage.setItem('quote', JSON.stringify(quotes));
 
       window.location.href = "finalSubmissionForm.html";
    }
