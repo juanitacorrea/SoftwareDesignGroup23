@@ -32,7 +32,6 @@ function inputInformation()
    //const totalAmount=document.getElementById('totalAmount');
    //totalAmount.appendChild(AmountDue);
 
-   
    if (!gallonsRequested.value) //makes sure that you inputted something in the name box
    {
       errorsFound = true;
@@ -42,24 +41,25 @@ function inputInformation()
       nameErr.textContent = "Missing Gallons Requested.";
       error.appendChild(nameErr);
    }
-//    if (!delDate.value) //makes sure that you inputted something in the name box
-//    {
-//       errorsFound = true;
-//       delDate.style = "border: 2px solid red;";
-//       error.style = "display: block";
-//       const nameErr = document.createElement("li");
-//       nameErr.textContent = "Missing Date";
-//       error.appendChild(nameErr);
-//    }
+    if (!delDate.value) //makes sure that you inputted something in the calender
+     {
+          errorsFound = true;
+          delDate.style = "border: 2px solid red;";
+          error.style = "display: block";
+          const nameErr = document.createElement("li");
+          nameErr.textContent = "Missing Date";
+          error.appendChild(nameErr);
+    }
 
    if (errorsFound === false) 
    {
-    //outputting into local storage 
-      var userFuelQuote = new Object();
-      userFuelQuote={Gallons:gallonsRequested.value, Address:delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
-      objPeople.push(userFuelQuote);
+      //outputting into local storage 
+      var tempQuote = new Object();
+      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
+      quotes.push(tempQuote);
+   
       console.log(userFuelQuote);
-      localStorage.setItem('quote', JSON.stringify(objPeople));
+      localStorage.setItem('quote', JSON.stringify(userFuelQuote));
 
       window.location.href = "finalSubmissionForm.html";
    }
