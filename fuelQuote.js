@@ -59,7 +59,7 @@ function inputInformation()
       quotes.push(tempQuote);
    
       console.log(tempQuote);
-      localStorage.setItem('quote', JSON.stringify(quotes));
+      localStorage.setItem('quote', JSON.stringify(tempQuote));
 
       window.location.href = "finalSubmissionForm.html";
    }
