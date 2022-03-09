@@ -4,7 +4,13 @@
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
 window.sessionStorage //to access from sessionStorage (current user logged in)
+<<<<<<< HEAD
 
+=======
+//const userName1 = sessionStorage.getItem('currentloggedin');
+//console.log(userName1);
+//This works
+>>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
@@ -26,9 +32,14 @@ function inputInformation()
    let delAddress= city + "," + street + "," + state+ "," + zip;
    const error = document.getElementById('formErrors');
    let errorsFound = false;
-
+   let AmountDue= calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
+   
    //didnt work but must add it to the fuelQuoteForm.html
+<<<<<<< HEAD
    let AmountDue = calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
+=======
+   
+>>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
    //const totalAmount=document.getElementById('totalAmount');
    //totalAmount.appendChild(AmountDue);
 
@@ -72,14 +83,21 @@ function inputInformation()
          }
       });
       console.log(tempQuote);
+<<<<<<< HEAD
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
       window.location.href = "finalSubmissionForm.html";
    }
 }
 
+=======
+      localStorage.setItem('users', JSON.stringify(copyOfObjPeople)); 
+>>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
 
       
    
+   }
+}
+      
    
 document.getElementById("submit").addEventListener("click", function(event) 
 {
