@@ -54,17 +54,32 @@ function inputInformation()
    if (errorsFound === false) 
    {
       //outputting into local storage 
+      var updatedUserDate = new Object();
       var tempQuote = new Object();
       tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
-      quotes.push(tempQuote);
+      
+      
+
+      var currerntUser = sessionStorage.getItem('currentloggedin');
+      var copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
+      copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
+      {
+         var usrnm = objPeople.username;
+         //console.log(usrnm + "   " + pswd + "\n");
+         if(currerntUser === usrnm)
+         {
+           objPeople.quotes.push(tempQuote);
+         }
+      });
+      localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
+   }
+}
+
    
       console.log(tempQuote);
       localStorage.setItem('quote', JSON.stringify(tempQuote));
 
       window.location.href = "finalSubmissionForm.html";
-   }
-   
-}
    
    
 document.getElementById("submit").addEventListener("click", function(event) 
