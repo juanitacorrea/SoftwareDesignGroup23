@@ -6,6 +6,7 @@
 window.sessionStorage //to access from sessionStorage (current user logged in)
 //const userName1 = sessionStorage.getItem('currentloggedin');
 //console.log(userName1);
+//This works
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
