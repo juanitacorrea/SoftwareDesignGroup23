@@ -4,8 +4,7 @@
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
 window.sessionStorage //to access from sessionStorage (current user logged in)
-const userName = sessionStorage.getItem('currentloggedin');
-console.log(userName);
+
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
@@ -14,6 +13,7 @@ function calcAmount(gallonsRequested, sugPriceInputBoxes)
     var amountDue = gals * price;
     return amountDue;
 }
+
 function inputInformation() 
 {
    const gallonsRequested = document.getElementById('gallonsInputBoxes');
@@ -28,7 +28,7 @@ function inputInformation()
    let errorsFound = false;
 
    //didnt work but must add it to the fuelQuoteForm.html
-   //let AmountDue= calcAmount(gallonsRequested, sugPriceInputBoxes);
+   let AmountDue = calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
    //const totalAmount=document.getElementById('totalAmount');
    //totalAmount.appendChild(AmountDue);
 
@@ -56,7 +56,7 @@ function inputInformation()
       //outputting into local storage 
       var updatedUserDate = new Object();
       var tempQuote = new Object();
-      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: amountDue.value};
+      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: AmountDue};
       
       
 
@@ -71,15 +71,14 @@ function inputInformation()
            objPeople.quotes.push(tempQuote);
          }
       });
+      console.log(tempQuote);
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
+      window.location.href = "finalSubmissionForm.html";
    }
 }
 
-   
-      console.log(tempQuote);
-      localStorage.setItem('quote', JSON.stringify(tempQuote));
 
-      window.location.href = "finalSubmissionForm.html";
+      
    
    
 document.getElementById("submit").addEventListener("click", function(event) 

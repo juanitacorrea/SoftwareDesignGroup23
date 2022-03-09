@@ -71,7 +71,6 @@
             if(username.value === usrnm && password.value === pswd)
             {
                 console.log(usrnm + "logged in sucscessfully");
-                
                 tester = 1;
             }
         });
