@@ -67,7 +67,6 @@ function inputInformation()
       copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
       {
          var usrnm = objPeople.username;
-         //console.log(usrnm + "   " + pswd + "\n");
          if(currerntUser === usrnm)
          {
            objPeople.quotes.push(tempQuote);
