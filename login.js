@@ -62,6 +62,7 @@
                 return
             }
         }*/
+        
         copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
         copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
         {
@@ -74,8 +75,9 @@
                 tester = 1;
             }
         });
-        //console.log(username.value + "failed login");
-        //console.log("incorrect password or username")
+
+        /*console.log(username.value + "failed login");
+        console.log("incorrect password or username")*/
     }  
 
   
@@ -84,7 +86,6 @@
         checkForm1(); 
 
         //this section is just outputting the usernames and passwords into the console just so we can see that they transferred over properly
-        //console.log(copyOfObjPeople);
        /* copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
         {
             var usrnm = objPeople.username;

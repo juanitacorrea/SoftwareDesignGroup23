@@ -4,13 +4,6 @@
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
 window.sessionStorage //to access from sessionStorage (current user logged in)
-<<<<<<< HEAD
-
-=======
-//const userName1 = sessionStorage.getItem('currentloggedin');
-//console.log(userName1);
-//This works
->>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
@@ -29,17 +22,13 @@ function inputInformation()
    const zip = document.getElementById('zipInput');
    const delDate = document.getElementById('delDateInputBoxes');
    const sugPriceInputBoxes = document.getElementById('sugPriceInputBoxes');
-   let delAddress= city + "," + street + "," + state+ "," + zip;
+   let delAddress= street.value + " " + city.value + ", " + state.value + " " + zip.value;
    const error = document.getElementById('formErrors');
    let errorsFound = false;
-   let AmountDue= calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
+   //let AmountDue= calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
    
    //didnt work but must add it to the fuelQuoteForm.html
-<<<<<<< HEAD
    let AmountDue = calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
-=======
-   
->>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
    //const totalAmount=document.getElementById('totalAmount');
    //totalAmount.appendChild(AmountDue);
 
@@ -83,18 +72,13 @@ function inputInformation()
          }
       });
       console.log(tempQuote);
-<<<<<<< HEAD
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
+      sessionStorage.setItem('mostRecentGallons', tempQuote.Gallons);
+      sessionStorage.setItem('mostRecentSugg', tempQuote.SuggPrice);
+      sessionStorage.setItem('mostRecentAddr', delAddress);
+      sessionStorage.setItem('mostRecentTotal',tempQuote.Total);
+
       window.location.href = "finalSubmissionForm.html";
-   }
-}
-
-=======
-      localStorage.setItem('users', JSON.stringify(copyOfObjPeople)); 
->>>>>>> 1049d43b87e5c040fecac7ef0db9e7b3e3a097fc
-
-      
-   
    }
 }
       
