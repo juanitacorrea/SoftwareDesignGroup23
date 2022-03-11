@@ -58,7 +58,7 @@ function inputInformation()
       //outputting into local storage 
       var updatedUserDate = new Object();
       var tempQuote = new Object();
-      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: AmountDue};
+      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: AmountDue, Date: delDate.value};
       
       
 
