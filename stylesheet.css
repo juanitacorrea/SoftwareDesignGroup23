@@ -69,7 +69,8 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 200px;
-    height: 20px;    
+    height: 20px;  
+    color: rgba(255, 255, 255, 0.582); 
 }
 #address1InputBoxes {
     border-radius: 14px;
@@ -111,6 +112,52 @@ labelPretext
     width: 220px;
     height: 40px;    
 }
+#address1InputBoxesFQ {
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 150px;
+    height: 12px; 
+}
+#addres2InputBoxesFQ {
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 150px;
+    height: 12px;   
+}
+#zipcodeInputBoxesFQ {
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 150px;
+    height: 12px;     
+}
+#cityInputBoxesFQ {
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.582);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 150px;
+    height: 12px;     
+}
+#stateInputBoxesFQ {
+    border-radius: 14px;
+    color:rgba(255, 255, 255, 0.582);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 150px;
+    height: 12px;     
+}
+
 #usernameInputBoxes {
     color: rgba(255, 255, 255, 0.582);
     border-radius: 14px;
@@ -212,7 +259,8 @@ instructionalUnderscore
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 150px;
-    height: 12px;    
+    height: 12px;  
+    color: rgba(255, 255, 255, 0.582);
 }
 
 #delAddrInputBoxes {
@@ -263,7 +311,6 @@ fqsflabels
     border-radius: 14px;
     border: 0px solid powderblue;
     background: rgb(175, 146, 255);
-    /* background: rgb(175, 146, 255); */
     padding: 10px; 
     width: 150px;
     width: 200px;
@@ -294,15 +341,23 @@ fqsflabels
     margin-bottom: 10px;
 }
 
+#rowBox {
+    border-radius: 14px;
+    color: white;
+    border: 3px solid rgb(175, 146, 255);
+    background: rgb(175, 146, 255);
+    padding: 10px; 
+    width: 150px;
+    height: 12px;   
+}
+
 #stateInput {
     border-radius: 14px;
-    color: rgba(255, 255, 255, 0.582);
     border: 3px solid rgb(175, 146, 255);
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
-    width: 50px;
-    height: 12px;   
-    margin-bottom: 3px;
+    width: 150px;
+    height: 12px; 
 }
 
 #zipInput {
@@ -319,13 +374,26 @@ fqsflabels
 #total
 {
     border-radius: 14px;
-    border: 3px solid rgb(196, 196, 196);
+    border: 3px solid rgb(175, 146, 255);
     background: rgba(255, 255, 255, 0.151);
     color: rgba(255, 255, 255, 0.582); 
-    width: 150px;
+    width: 75px; 
     padding: 10px; 
     height: 12px;    
     margin-bottom: 10px; 
+    text-align: center;
+}
+
+#calculatetotalamountButton {
+    border-radius: 10px;
+    border: 3px solid rgb(175, 146, 255);
+    background: rgb(175, 146, 255);
+    color: rgba(255, 255, 255, 0.582);
+    padding: 5px; 
+    width: 75px;
+    height: 35px;    
+    margin-bottom: 3px;
+    color: white;
 }
 
 option

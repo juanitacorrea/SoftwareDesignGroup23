@@ -4,16 +4,13 @@
 //then output onto a text file the data that was inputted into the fuel quote (and final quote that was calculated from function)
 
 window.sessionStorage //to access from sessionStorage (current user logged in)
-//const userName1 = sessionStorage.getItem('currentloggedin');
-//console.log(userName1);
-//This works
 
 function calcAmount(gallonsRequested, sugPriceInputBoxes)
 { 
     var gals = gallonsRequested;
     var price = sugPriceInputBoxes;
     var amountDue = gals * price;
-    return amountDue;
+    return amountDue.toFixed(2);
 }
 function inputInformation() 
 {
@@ -28,11 +25,6 @@ function inputInformation()
    const error = document.getElementById('formErrors');
    let errorsFound = false;
    let AmountDue= calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
-   
-   //didnt work but must add it to the fuelQuoteForm.html
-   
-   //const totalAmount=document.getElementById('totalAmount');
-   //totalAmount.appendChild(AmountDue);
 
    if (!gallonsRequested.value) //makes sure that you inputted something in the name box
    {

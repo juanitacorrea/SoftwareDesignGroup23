@@ -31,16 +31,6 @@ function checkForm()
       error.appendChild(passErr4);
    }
 
-   if (!addrLine2.value) //checks to make sure that the password has numbers in it
-   {
-      errorsFound = true;
-      addrLine2.style = "border: 2px solid red;";
-      error.style = "display: block";
-      const passErr4 = document.createElement("li");
-      passErr4.textContent = "Password must contain at least one digit.";
-      error.appendChild(passErr4);
-   }
-
    if (!city) //checks to make sure that the password has numbers in it
    {
       errorsFound = true;
@@ -75,7 +65,6 @@ function checkForm()
       copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
       {
          var usrnm = objPeople.username;
-         //console.log(usrnm + "   " + pswd + "\n");
          if(currerntUser === usrnm)
          {
              console.log("Currently editing: " + usrnm);  
@@ -83,11 +72,15 @@ function checkForm()
              objPeople.addrLine1 = addrLine1.value;
              objPeople.addrLine2 = addrLine2.value;
              objPeople.city = city.value;
-             objPeople.state = "temp";
+             objPeople.state = state.value;
              objPeople.zip = zip.value;
          }
       });
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
+      sessionStorage.setItem('currentUserAddr1', addrLine1.value);
+      sessionStorage.setItem('city', city.value);
+      sessionStorage.setItem('state', state.value);
+      sessionStorage.setItem('zipcode', zip.value);
    }
 }
 document.getElementById("submit").addEventListener("click", function(event) 
