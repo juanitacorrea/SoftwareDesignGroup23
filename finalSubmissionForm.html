@@ -7,8 +7,7 @@
 
 <body>
 
-<p><a href="fuelQuoteForm.html"><span style = "color:rgb(255, 255, 255); font-size: 9pt;">Go Back</a></span>
-   <span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></p>          
+<p><a href="fuelQuoteForm.html"><span style = "color:rgb(175, 146, 255); font-size: 9pt;">Go Back</a></span></p>          
  <h1>Final Submission Form<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
  <section><instructionalUnderscore> You have submitted your Fuel Quote information. Make sure all information inputted is correct.</instructionalUnderscore></section><br><br>
  <!--<fqsflabels>Gallons Requested</fqsflabels><br><br><br>
@@ -27,8 +26,10 @@
    document.getElementById("sugg").innerHTML = sessionStorage.getItem('mostRecentSugg');
    document.getElementById("total1").innerHTML = sessionStorage.getItem('mostRecentTotal');
 </script>
-
+<input type="submit" id = "payment" value="Continue to Payment" href = 'menu.html'>
 </body>
+<br>
+<br>
 <labelPretext for="Return"><b>Return to</b></labelPretext>
 <a id = "normalLink" href="menu.html">menu</a><br>
 
