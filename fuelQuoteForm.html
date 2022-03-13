@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <link rel="stylesheet" href="stylesheet.css">
-<script src="fuelQuote.js" defer></script>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -14,18 +14,37 @@
 
 </body>
 
-<form action="finalSubmissonForm.html" method="post">
+<body>
     <p>
       <fqfLabels for="gallonsR">Gallons Requested&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
       <input type="number" id="gallonsInputBoxes" name="gallonsR" placeholder="*Input gallons requested">
     </p>
     <p>
-     <fqfLabels for="address">Delivery Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </fqfLabels>
-     <input type="text" value="Houston" id="cityInput" readonly/> <br>
-     <input type="text" value="4800 Calhoun Road" id="streetInput" readonly/> <br>
-     <input type="text" value="Texas" id="stateInput" readonly/>
-     <input type="text" value="77004" id="zipInput" readonly/>
+     <!--<fqfLabels for="address">Delivery Address</fqfLabels>-->
+     <table>
+      <tr>
+        <th id = "rowBox">Address</th>
+        <th id = "rowBox">City</th>
+        <th id = "rowBox">State</th>
+        <th id = "rowBox">Zipcode</th>
+      </tr>
+      <tr>
+        <td width = "800" height = "45"><span id = "address1InputBoxesFQ"></span></td>
+        <td><span id = "cityInputBoxesFQ"></span></td>
+        <td><span id = "stateInputBoxesFQ"></span></td>
+        <td><span id = "zipcodeInputBoxesFQ"></span></td>
+      </tr>
+    </table>
+    
+     <script>
+      document.getElementById("address1InputBoxesFQ").innerHTML = sessionStorage.getItem('currentUserAddr1');
+      document.getElementById("cityInputBoxesFQ").innerHTML = sessionStorage.getItem('city');
+      document.getElementById("stateInputBoxesFQ").innerHTML = sessionStorage.getItem('state');
+      document.getElementById("zipcodeInputBoxesFQ").innerHTML = sessionStorage.getItem('zipcode');
+   </script>
+
    </p>
+
     <p>
       <fqfLabels for="deliveryDate">Delivery Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
       <input type="date" id="delDateInputBoxes" name="deliveryDate">
@@ -36,26 +55,34 @@
     </p>
     <p>
         <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-        <input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly></readonly>
+        <!--<input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly></readonly>-->
+        <input type="number" readonly id="total" name ="calcBox">
+        <input type="button" name="clickbtn" id="calculatetotalamountButton" value="Calculate" onclick="multipy_number()">
+        <script>
+          function multipy_number()
+          {
+            const first_number = document.getElementById("gallonsInputBoxes").value;
+            const second_number = document.getElementById("sugPriceInputBoxes").value;
+            document.getElementById("total").value = (first_number*second_number).toFixed(2); 
+          }
+        </script>
+
         <div id ="totalAmount"></div>
     </p>
     <p>
-        <input id = "submit" type="submit" value="Submit" onclick="location.href = 'finalSubmissonForm.html';">
+        <input type="submit" id = "submit" value="Submit" href = 'finalSubmissionForm.html'>
     </p>
     <br>
     <div id="formErrors"></div>
 
-  </form>
+  </body>
 
   <body>
-    <br>
     <labelPretext for="Return"><b>Return to</b></labelPretext>
-    <a id = "normalLink" href="finalSubmissionForm.html">menu</a><br>
+    <a id = "normalLink" href="menu.html">menu</a><br>
 
-    <labelPretext><span style = "color:rgb(68, 0, 255); font-size: 18pt;">*</span>required field</labelPretext>
+    <labelPretext><span style = "color:rgb(175, 146, 255); font-size: 18pt;">*</span>required field</labelPretext>
 
 </body>
 
  </html>
-
- 

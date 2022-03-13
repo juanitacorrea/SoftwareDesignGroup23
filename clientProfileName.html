@@ -4,24 +4,25 @@
 
 <head>
     <h1>Client Profile<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
+    <script src="profileManager.js" defer></script>
 </head>
 
-<form action="action_page.php" method="get">
+<body>
     <p>
         <label for="name"></label>
-        <input type="text" id="inputBoxes" name="name" placeholder="*Enter Full Name" required maxlength="50">
+        <input type="text" id="fullNameInputBoxes" name="name" placeholder="*Enter Full Name" required maxlength="50">
     </p> 
     <p>
         <label for="address"></label>
-        <input type="text" id="inputBoxes" name="adress" placeholder="*Address Line 1" required maxlength="100">
+        <input type="text" id="address1InputBoxes" name="adress" placeholder="*Address Line 1" required maxlength="100">
     </p> 
     <p>
         <label for="address"></label>
-        <input type="text" id="inputBoxes" name="address" placeholder="Address Line 2" maxlength="100">
+        <input type="text" id="addres2InputBoxes" name="address" placeholder="Address Line 2" maxlength="100">
     </p>
     <p>
         <label for="city"></label>
-        <input type="text" id="inputBoxes" name="city" placeholder="*City" required maxlength="100">
+        <input type="text" id="cityInputBoxes" name="city" placeholder="*City" required maxlength="100">
     </p> 
     <p>
         <!--<label for="state"></label>
@@ -83,15 +84,16 @@
     </p> 
     <p>
         <label for="zipcode"></label>
-        <input type="number" id="inputBoxes" name="zipcode" placeholder="*Zipcode" required maxlength="9" minlength="5">
+        <input type="number" id="zipcodeInputBoxes" name="zipcode" placeholder="*Zipcode" required maxlength="9" minlength="5">
     </p> 
     <p>
-        <input id = "loginorsubmit" type="submit" value="Submit" onclick="location.href = 'login.html';">
+        <input id = "submit" type="submit" value="Update">
     </p>
 
-</form>
-<labelPretext for="Return"><b>Return to</b></labelPretext>
+</body>
+<labelPretext for="Return"><b>Return to</b></labelPretext> 
 <a id = "normalLink" href="menu.html">menu</a><br>
 
-<labelPretext><span style = "color:rgb(68, 0, 255); font-size: 18pt;">*</span>required field</labelPretext>
+<labelPretext><span style = "color:rgb(175, 146, 255); font-size: 18pt;">*</span>required field</labelPretext>
+<div id="formErrors"></div>
 </html>

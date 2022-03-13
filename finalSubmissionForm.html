@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="stylesheet.css">
+   <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="stylesheet.css">
+   </head>
 
 <body>
 
-<p><a href="fuelQuoteForm.html">Go Back</a></p>          
+<p><a href="fuelQuoteForm.html"><span style = "color:rgb(255, 255, 255); font-size: 9pt;">Go Back</a></span>
+   <span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></p>          
  <h1>Final Submission Form<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
  <section><instructionalUnderscore> You have submitted your Fuel Quote information. Make sure all information inputted is correct.</instructionalUnderscore></section><br><br>
- <fqsflabels>Gallons Requested</fqsflabels><br><br><br>
+ <!--<fqsflabels>Gallons Requested</fqsflabels><br><br><br>
  <fqsflabels>Delivery Address</fqsflabels><br><br><br>
  <fqsflabels>Delivery Date</fqsflabels><br><br><br>
  <fqsflabels>Price per Gallon</fqsflabels><br><br><br>
-<fqsflabels>Total Amount Due</fqsflabels><br><br><br>
+<fqsflabels>Total Amount Due</fqsflabels><br><br><br>-->
+<fqsflabels>Gallons: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "gallons"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Address: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "addr"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Suggested Price Per Gallon: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "sugg"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Total: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "total1"></span></fqsflabels><br><br><br><br>
+
+<script>
+   document.getElementById("gallons").innerHTML = sessionStorage.getItem('mostRecentGallons');
+   document.getElementById("addr").innerHTML = sessionStorage.getItem('mostRecentAddr');
+   document.getElementById("sugg").innerHTML = sessionStorage.getItem('mostRecentSugg');
+   document.getElementById("total1").innerHTML = sessionStorage.getItem('mostRecentTotal');
+</script>
 
 </body>
 <labelPretext for="Return"><b>Return to</b></labelPretext>
-<a id = "normalLink" href="fuelQuoteForm.html">fuel quote</a><br>
+<a id = "normalLink" href="menu.html">menu</a><br>
 
 
 </html>
