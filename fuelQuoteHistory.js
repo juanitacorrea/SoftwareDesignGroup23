@@ -23,7 +23,7 @@ tempQuotes.forEach(function(q)
     var SuggPrice = q.SuggPrice;
     var Date = q.Date;
     var Total = q.Total;
-    var outputString = Date + "   Gallons Requested: " + Gallons + "   Address: " + Address + "   Suggested Price: " + SuggPrice + "   Total: " + Total;
+    var outputString = "Date: " +Date + "  |  " +" Gallons Requested: " + Gallons +  "  |  " + " Suggested Price: " + SuggPrice + "  |  " + " Total: " + Total;
     const passErr = document.createElement("li");
     passErr.textContent = outputString;
     quotes1.appendChild(passErr);

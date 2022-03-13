@@ -18,16 +18,19 @@
 <fqsflabels>Total Amount Due</fqsflabels><br><br><br>-->
 <fqsflabels>Gallons: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "gallons"></span></fqsflabels><br><br><br><br>
 <fqsflabels>Address: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "addr"></span></fqsflabels><br><br><br><br>
-<fqsflabels>Suggested Price: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "sugg"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Suggested Price Per Gallon: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "sugg"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Total: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "total1"></span></fqsflabels><br><br><br><br>
+
 <script>
    document.getElementById("gallons").innerHTML = sessionStorage.getItem('mostRecentGallons');
    document.getElementById("addr").innerHTML = sessionStorage.getItem('mostRecentAddr');
    document.getElementById("sugg").innerHTML = sessionStorage.getItem('mostRecentSugg');
+   document.getElementById("total1").innerHTML = sessionStorage.getItem('mostRecentTotal');
 </script>
 
 </body>
 <labelPretext for="Return"><b>Return to</b></labelPretext>
-<a id = "normalLink" href="fuelQuoteForm.html">fuel quote</a><br>
+<a id = "normalLink" href="menu.html">menu</a><br>
 
 
 </html>

@@ -10,27 +10,22 @@ function calcAmount(gallonsRequested, sugPriceInputBoxes)
     var gals = gallonsRequested;
     var price = sugPriceInputBoxes;
     var amountDue = gals * price;
-    return amountDue;
+    return amountDue.toFixed(2);
 }
 
 function inputInformation() 
 {
    const gallonsRequested = document.getElementById('gallonsInputBoxes');
-   const city = document.getElementById('cityInput');
-   const street = document.getElementById('streetInput');
-   const state = document.getElementById('stateInput');
-   const zip = document.getElementById('zipInput');
+   const city = sessionStorage.getItem('city');//document.getElementById('cityInputBoxesFQ');
+   const street = sessionStorage.getItem('currentUserAddr1');//document.getElementById('address1InputBoxesFQ');
+   const state = sessionStorage.getItem('state');//document.getElementById('stateInputBoxesFQ');
+   const zip = sessionStorage.getItem('zipcode');//document.getElementById('zipcodeInputBoxesFQ');
    const delDate = document.getElementById('delDateInputBoxes');
    const sugPriceInputBoxes = document.getElementById('sugPriceInputBoxes');
-   let delAddress= street.value + " " + city.value + ", " + state.value + " " + zip.value;
+   let delAddress= street + ", " + city + ", "  + state + " " + zip;
    const error = document.getElementById('formErrors');
    let errorsFound = false;
-   //let AmountDue= calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
-   
-   //didnt work but must add it to the fuelQuoteForm.html
    let AmountDue = calcAmount(gallonsRequested.value, sugPriceInputBoxes.value);
-   //const totalAmount=document.getElementById('totalAmount');
-   //totalAmount.appendChild(AmountDue);
 
    if (!gallonsRequested.value) //makes sure that you inputted something in the name box
    {
@@ -56,30 +51,28 @@ function inputInformation()
       //outputting into local storage 
       var updatedUserDate = new Object();
       var tempQuote = new Object();
-      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress.value, SuggPrice: sugPriceInputBoxes.value, Total: AmountDue};
-      
-      
+      tempQuote = {Gallons: gallonsRequested.value, Address: delAddress, SuggPrice: sugPriceInputBoxes.value, Total: AmountDue, Date: delDate.value};
 
       var currerntUser = sessionStorage.getItem('currentloggedin');
       var copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
-      copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
+      copyOfObjPeople.every(function(objPeople) //u can use this to iterate through the array in your bool function
       {
          var usrnm = objPeople.username;
-         //console.log(usrnm + "   " + pswd + "\n");
          if(currerntUser === usrnm)
          {
            objPeople.quotes.push(tempQuote);
            console.log("just put a quote in");
+           return false;
          }
+         return true;
       });
-      //console.log(tempQuote);
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
       sessionStorage.setItem('mostRecentGallons', tempQuote.Gallons);
       sessionStorage.setItem('mostRecentSugg', tempQuote.SuggPrice);
       sessionStorage.setItem('mostRecentAddr', delAddress);
       sessionStorage.setItem('mostRecentTotal',tempQuote.Total);
 
-      //window.location.href = "finalSubmissionForm.html";
+      window.location.href = "finalSubmissionForm.html";
    }
 }
       

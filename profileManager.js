@@ -88,6 +88,10 @@ function checkForm()
          }
       });
       localStorage.setItem('users', JSON.stringify(copyOfObjPeople));
+      sessionStorage.setItem('currentUserAddr1', addrLine1.value);
+      sessionStorage.setItem('city', city.value);
+      sessionStorage.setItem('state', state.value);
+      sessionStorage.setItem('zipcode', zip.value);
    }
 }
 document.getElementById("submit").addEventListener("click", function(event) 

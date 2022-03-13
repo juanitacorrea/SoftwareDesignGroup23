@@ -50,18 +50,6 @@
 
     function isInLocal(username, password)   // to check the login 
     {
-        /*var username = document.getElementById("username").value
-        var password = document.getElementById("password"). value 
-        console.log("your username is" + username + " and your password is" + password)
-        copyOfObjPeople = JSON.parse(localStorage.getItem("users")); //making a copy of the array that was made in register.js
-        for (index = 0; index < copyOfObjPeople.length; index++)
-        {
-            if(username === copyOfObjPeople[index].username && password === copyOfObjPeople[index].password)
-            {
-                console.log(username + "logged in successfully")
-                return
-            }
-        }*/
         copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
         copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
         {
@@ -75,8 +63,6 @@
                 tester = 1;
             }
         });
-        //console.log(username.value + "failed login");
-        //console.log("incorrect password or username")
     }  
 
   
@@ -84,14 +70,5 @@
     {
         checkForm1(); 
 
-        //this section is just outputting the usernames and passwords into the console just so we can see that they transferred over properly
-        //console.log(copyOfObjPeople);
-       /* copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
-        {
-            var usrnm = objPeople.username;
-            var pswd = objPeople.password;
-            console.log("username: " + usrnm + " Password: " + pswd);
-        });*/
-    //Prevent default form action. DO NOT REMOVE THIS LINE
         event.preventDefault();
     });
