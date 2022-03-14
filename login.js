@@ -27,7 +27,7 @@
        if (!password.value) //makes sure that you inputted something in the name box
        {
           errorsFound = true;
-          name.style = "border: 2px solid red;";
+          password.style = "border: 2px solid red;";
           error.style = "display: block";
           const nameErr = document.createElement("li");
           nameErr.textContent = "Missing password.";
@@ -43,6 +43,16 @@
           password.style = "border: 1px solid #aaa;";
           sessionStorage.setItem("currentloggedin", name.value);
           window.location.href = "menu.html";
+       }
+       else
+       {
+            errorsFound = true;
+            name.style = "border: 2px solid red;";
+            password.style = "border: 2px solid red;";
+            error.style = "display: block";
+            const nameErr = document.createElement("li");
+            nameErr.textContent = "username or password is incorrect.";
+            error.appendChild(nameErr);
        }
        
     }
