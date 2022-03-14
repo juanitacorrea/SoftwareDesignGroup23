@@ -83,7 +83,7 @@ function checkForm()
              objPeople.addrLine1 = addrLine1.value;
              objPeople.addrLine2 = addrLine2.value;
              objPeople.city = city.value;
-             objPeople.state = "temp";
+             objPeople.state = state.value;
              objPeople.zip = zip.value;
          }
       });
