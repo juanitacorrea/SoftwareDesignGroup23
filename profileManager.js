@@ -94,6 +94,40 @@ function checkForm()
       sessionStorage.setItem('zipcode', zip.value);
    }
 }
+
+function checkFormNew()
+{
+   
+   if (!fullname) //makes sure that you inputted something in the name box
+   {
+      return false;
+   }
+
+   if (!addrLine1) //checks to make sure that the password has numbers in it
+   {
+      return false;
+   }
+
+   if (!addrLine2) //checks to make sure that the password has numbers in it
+   {
+      return false;
+   }
+
+   if (!city) //checks to make sure that the password has numbers in it
+   {
+     return false;
+   }
+
+   if (!zip) //checks to make sure that the password has numbers in it
+   {
+      return false;
+   }
+
+   else 
+   {
+     return true;
+   }
+}
 document.getElementById("submit").addEventListener("click", function(event) 
 {
     checkForm(); 

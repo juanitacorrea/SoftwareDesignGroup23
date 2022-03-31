@@ -49,6 +49,34 @@ app.post('/register', function(req,res){
      }	
 })
 
+app.post('/clientProfileName', function(req,res){
+    var username = req.body.name;
+    var addrLine1 = req.body.addrLine1;
+    var addrLine2 = req.body.addrLine2;
+    var city = req.body.city;
+    var state = req.body.state;
+    var zip = req.body.zip;
+
+	var data = 
+    {
+        "name": username,
+        "addrLine1": addrLine1,
+        "addrLine2": addrLine2,
+        "city": city,
+        "state": state,
+        "zip": zip,
+	}
+     if(reg.checkForm1(username, addrLine1, addrLine2, addrLine2, city, state, zip))
+     {
+        db.collection('currentuser').insertOne(data,function(err, collection){
+            if (err) throw err;
+            console.log("Record inserted Successfully");
+            //ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentuser', '--jsonArray', '--out', 'output.json']);
+        });
+        return res.redirect('clientProfileName.html');
+     }	
+})
+
 app.post('/login', function(req,res){
     var uname = req.body.uname;
     var pswd = req.body.pswd;
