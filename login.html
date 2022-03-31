@@ -3,13 +3,15 @@
    <head>
       <meta charset="UTF-8">
       <link rel="stylesheet" href="stylesheet.css">
-      <script src="login.js" defer></script>
+      <!-- <script src="login.js" defer></script> -->
    </head>
 
 <body>
   <h1>Welcome<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
   <instructionalUnderscore>Please sign into your account</instructionalUnderscore>
     <div class="container">
+      <form action="/login" method="post">
+
      <p>
         <label for="username"><b></b></label>
         <input type="text" id="usernameInputBoxes" placeholder="Username" name="uname" required>
@@ -23,8 +25,97 @@
      <p>
         <input type="submit" id = "submit" value="Submit">
      </p>
+   </form>
+   <script>
+      document.getElementById("submit").addEventListener("click", function(event) 
+      {
+         var tester = 0;
+         //assigning all the values that were inputted into the text boxes
+         const name = document.getElementById('usernameInputBoxes');
+         const password = document.getElementById('passwordInputBoxes');
+         const passwordCheckInputBoxes = document.getElementById('passwordCheckInputBoxes');
+         const error = document.getElementById('formErrors');
+         let errorsFound = false;
+         
+         if (!name.value) //makes sure that you inputted something in the name box
+         {
+            errorsFound = true;
+            name.style = "border: 2px solid red;";
+            error.style = "display: block";
+            const nameErr = document.createElement("li");
+            nameErr.textContent = "Missing full name.";
+            error.appendChild(nameErr);
+         }
       
+         if (!password.value) //makes sure that you inputted something in the name box
+         {
+            errorsFound = true;
+            password.style = "border: 2px solid red;";
+            error.style = "display: block";
+            const nameErr = document.createElement("li");
+            nameErr.textContent = "Missing password.";
+            error.appendChild(nameErr);
+         }
+         
+         //isInLocal(name, password);
+
+         // copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
+         // copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
+         // {
+         //       var usrnm = objPeople.username;
+         //       var pswd = objPeople.password;
+         //       //console.log(usrnm + "   " + pswd + "\n");
+         //       if(username.value === usrnm && password.value === pswd)
+         //       {
+         //          console.log(usrnm + "logged in sucscessfully");
+                  
+         //          tester = 1;
+         //       }
+         // });
+
+         
+         // if (errorsFound === false && tester != 0)
+         // {
+         //    error.style = "display: block";
+         //    name.style = "border: 1px solid #aaa;";
+         //    password.style = "border: 1px solid #aaa;";
+         //    // sessionStorage.setItem("currentloggedin", name.value);
+         //    window.location.href = "menu.html";
+         // }
+         // else
+         // {
+         //       errorsFound = true;
+         //       name.style = "border: 2px solid red;";
+         //       password.style = "border: 2px solid red;";
+         //       error.style = "display: block";
+         //       const nameErr = document.createElement("li");
+         //       nameErr.textContent = "username or password is incorrect.";
+         //       error.appendChild(nameErr);
+         // }
+         
+      });
+      //insert a bool function here that can iterate through the array and tell you whether or not the username-password pair is in there
+
+      // function isInLocal(username, password)   // to check the login 
+      // {
+      //    copyOfObjPeople = JSON.parse(localStorage.getItem("users"));
+      //    copyOfObjPeople.forEach(function(objPeople) //u can use this to iterate through the array in your bool function
+      //    {
+      //          var usrnm = objPeople.username;
+      //          var pswd = objPeople.password;
+      //          //console.log(usrnm + "   " + pswd + "\n");
+      //          if(username.value === usrnm && password.value === pswd)
+      //          {
+      //             console.log(usrnm + "logged in sucscessfully");
+                  
+      //             tester = 1;
+      //          }
+      //    });
+      // }  
+         
+   </script>
     </div>
+
     <p>
       <labelPretext for="Register"><b>Don't have an account?</b></labelPretext>
        <a id = "normalLink" href="clientRegistration.html" >Register</a>
