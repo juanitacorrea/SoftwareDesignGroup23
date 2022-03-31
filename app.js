@@ -20,13 +20,15 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+
 var spawn = require('child_process').spawn;
+
 app.post('/register', function(req,res){
     var username = req.body.username;
     var psw = req.body.psw;
     var pswCheck = req.body.pswCheck;
 
-	var data = {
+    var data = {
         "username":username,
         "password":psw,
         "passwordCheck":pswCheck,
@@ -37,7 +39,7 @@ app.post('/register', function(req,res){
         "state": "",
         "zip": "",
         "quotes": []
-	}
+    }
      if(reg.checkForm1(username, psw, pswCheck))
      {
         db.collection('userdata').insertOne(data,function(err, collection){
@@ -46,7 +48,33 @@ app.post('/register', function(req,res){
             ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'output.json']);
         });
         return res.redirect('login.html');
+     }  
+})
+
+app.post('/fuelQuote', function(req, res){
+    var galsRequested = req.body.gallonsR
+    var delDATE = re.body.deliveryDate
+    var suggestedPrice = req.body.suggPrice
+    var totalAMT = req.body.total_amount
+
+	var fuelQuotedata = {
+        //"username": currentUser,
+        "galsRequested": galsRequested,
+        "deliveryDate": delDATE,
+        "suggestedPrice": suggestedPrice,
+        "totalAmount": totalAMT
+	}
+
+     if(reg.checkFormFQ(galsRequested, delDATE, suggestedPrice, totalAMT))
+     {
+        db.collection('fuelQuotes').insertOne(fuelQuotedata,function(err, collection){
+            if (err) throw err;
+            console.log("Quote inserted successfully");
+            //ls = spawn('mongoexport',['--db', 'gfg','--collection', 'fuelQuotes', '--jsonArray', '--out', 'output.json']);
+        });
+        return res.redirect('finalSubmissionForm.html');
      }	
+
 })
 
 app.post('/login', function(req,res){
@@ -59,6 +87,21 @@ app.post('/login', function(req,res){
     if(login.isInDB(uname, pswd, copyOfDB, 0) == 1)
     {
         console.log("You've successfully logged in!")
+        var data = 
+        {
+            "username":uname,
+            "fullName": "",
+            "addrLine1": "",
+            "addrLine2": "",
+            "city": "",
+            "state": "",
+            "zip": ""
+        }
+        db.collection('currentUser').insertOne(data,function(err, collection){
+            if (err) throw err;
+            console.log("Record inserted Successfully");
+        });
+
         return res.redirect('menu.html');
     }
 })

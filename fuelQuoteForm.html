@@ -14,6 +14,7 @@
 
 </body>
 
+<form>
 <body>
     <p>
       <fqfLabels for="gallonsR">Gallons Requested&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
@@ -36,12 +37,12 @@
       </tr>
     </table>
     
-     <script>
+    <script>
       document.getElementById("address1InputBoxesFQ").innerHTML = sessionStorage.getItem('currentUserAddr1');
       document.getElementById("cityInputBoxesFQ").innerHTML = sessionStorage.getItem('city');
       document.getElementById("stateInputBoxesFQ").innerHTML = sessionStorage.getItem('state');
       document.getElementById("zipcodeInputBoxesFQ").innerHTML = sessionStorage.getItem('zipcode');
-   </script>
+    </script>
 
    </p>
 
@@ -51,12 +52,11 @@
     </p>
     <p>
         <fqfLabels for="pricePerGallon">Suggested Price/Gallon</fqfLabels>
-        <input type="number" value= 2.80 id ="sugPriceInputBoxes" readonly/>
+        <input type="number" value= 2.80 id ="sugPriceInputBoxes" name= "suggPrice" readonly/>
     </p>
     <p>
         <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-        <!--<input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly></readonly>-->
-        <input type="number" readonly id="total" name ="calcBox">
+        <input type="number" readonly id="total_amount" name ="calcBox">
         <input type="button" name="clickbtn" id="calculatetotalamountButton" value="Get Quote" onclick="multipy_number()">
         <script>
           function multipy_number()
@@ -76,6 +76,35 @@
     <div id="formErrors"></div>
 
   </body>
+</form>
+      <script>
+        document.getElementById("submit").addEventListener("click", function(event)  
+        {
+          const gallonsRequested = document.getElementById("gallonsInputBoxes")
+          const delDate = document.getElementById("delDateInputBoxes")
+
+          if (!gallonsRequested.value) //makes sure that you inputted something in the name box
+            {
+                errorsFound = true;
+                gallonsRequested.style = "border: 2px solid red;";
+                error.style = "display: block";
+                const nameErr = document.createElement("li");
+                nameErr.textContent = "Missing Gallons Requested.";
+                error.appendChild(nameErr);
+            }
+          if (!delDate.value) //makes sure that you inputted something in the calender
+            {
+                    errorsFound = true;
+                    delDate.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const nameErr = document.createElement("li");
+                    nameErr.textContent = "Missing Date";
+                    error.appendChild(nameErr);
+            }
+        });
+      </script>
+
+
 
   <body>
     <labelPretext for="Return"><b>Return to</b></labelPretext>
@@ -83,6 +112,5 @@
 
     <labelPretext><span style = "color:rgb(175, 146, 255); font-size: 18pt;">*</span>required field</labelPretext>
 
-</body>
-
- </html>
+  </body>
+</html>
