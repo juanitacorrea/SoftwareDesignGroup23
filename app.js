@@ -26,7 +26,7 @@ app.post('/register', function(req,res){
     var psw = req.body.psw;
     var pswCheck = req.body.pswCheck;
 
-	var data = {
+    var data = {
         "username":username,
         "password":psw,
         "passwordCheck":pswCheck,
@@ -37,7 +37,7 @@ app.post('/register', function(req,res){
         "state": "",
         "zip": "",
         "quotes": []
-	}
+    }
      if(reg.checkForm1(username, psw, pswCheck))
      {
         db.collection('userdata').insertOne(data,function(err, collection){
@@ -46,7 +46,7 @@ app.post('/register', function(req,res){
             ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'output.json']);
         });
         return res.redirect('login.html');
-     }	
+     }  
 })
 
 app.post('/clientProfileName', function(req,res){
@@ -87,6 +87,33 @@ app.post('/login', function(req,res){
     if(login.isInDB(uname, pswd, copyOfDB, 0) == 1)
     {
         console.log("You've successfully logged in!")
+        var data = 
+        {
+            "username":uname,
+            "fullName": "",
+            "addrLine1": "",
+            "addrLine2": "",
+            "city": "",
+            "state": "",
+            "zip": ""
+        }
+        db.collection('currentUser').insertOne(data,function(err, collection){
+            if (err) throw err;
+            console.log("Record inserted Successfully");
+        });
+        /*db.collection('currentUser').updateOne(data,function(err, collection){
+            if (err) throw err;
+            console.log("Record inserted Successfully");
+        });*/
+
+
+        var myquery = { password: "Houston2020_" };
+        var newvalues = { $set: {username: "sarrahz", password: "MoCity2022!" } };
+        db.collection("userdata").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+
         return res.redirect('menu.html');
     }
 })
