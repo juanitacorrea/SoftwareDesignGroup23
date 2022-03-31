@@ -51,8 +51,8 @@ app.post('/register', function(req,res){
 
 app.post('/clientProfileName', function(req,res){
     var username = req.body.name;
-    var addrLine1 = req.body.addrLine1;
-    var addrLine2 = req.body.addrLine2;
+    var addrLine1 = req.body.address;
+    var addrLine2 = req.body.address;
     var city = req.body.city;
     var state = req.body.state;
     var zip = req.body.zip;
@@ -66,7 +66,7 @@ app.post('/clientProfileName', function(req,res){
         "state": state,
         "zip": zip,
 	}
-     if(reg.checkForm1(username, addrLine1, addrLine2, addrLine2, city, state, zip))
+     if(reg.checkForm1(username, addrLine1, addrLine2, city, state, zip))
      {
         db.collection('currentuser').insertOne(data,function(err, collection){
             if (err) throw err;
