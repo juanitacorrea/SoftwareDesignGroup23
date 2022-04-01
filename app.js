@@ -93,16 +93,6 @@ app.post('/login', function(req,res)
         }
 
         var myquery = { bVal: "val" };
-        // clears the current user collection because we only want one current user
-        // db.collection("currentUser").deleteMany(myquery, function(err, obj) {
-        // if (err) throw err;
-        // console.log("Current users cleared");
-        // });
-        // // inserts the current user into the current user collection
-        // db.collection('currentUser').insertOne(data,function(err, collection){
-        //     if (err) throw err;
-        //     console.log("Current user inserted Successfully");
-        // });
 
         db.collection('currentUser').updateOne(myquery, data, function(err, res) 
         {
