@@ -4,10 +4,12 @@
 
 <head>
     <h1>Client Profile<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
-    <script src="profileManager.js" defer></script>
+    <!-- <script src="profileManager.js" defer></script> -->
 </head>
 
 <body>
+    <form action="/clientProfileName" method="post">
+        
     <p>
         <label for="name"></label>
         <input type="text" id="fullNameInputBoxes" name="name" placeholder="*Enter Full Name" required maxlength="50">
@@ -89,7 +91,7 @@
     <p>
         <input id = "submit" type="submit" value="Update">
     </p>
-
+    </form>
 </body>
 <labelPretext for="Return"><b>Return to</b></labelPretext> 
 <a id = "normalLink" href="menu.html">menu</a><br>
