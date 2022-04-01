@@ -4,6 +4,15 @@ const login = require("./login");
 var express=require("express");
 var bodyParser=require("body-parser");
 
+var app = express();
+//const ejs = require('ejs');
+app.set('view engine', 'ejs');
+app.get('/finalSubmissionForm', function(req, res){
+    res.render('pages/finalSubmissionForm');
+});
+
+
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/gfg');
 var db=mongoose.connection;
@@ -117,7 +126,6 @@ app.post('/login', function(req,res){
         return res.redirect('menu.html');
     }
 })
-
 
 app.get('/',function(req,res){
 res.set({
