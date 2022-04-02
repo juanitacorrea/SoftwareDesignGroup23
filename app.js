@@ -5,6 +5,9 @@ var currentUser = "";
 var express=require("express");
 var bodyParser=require("body-parser");
 
+var app = express();
+app.set('view engine', 'ejs');
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/gfg');
 var db=mongoose.connection;
@@ -13,7 +16,7 @@ db.once('open', function(callback){
 	console.log("connection succeeded");
 })
 
-var app=express()
+// var app=express()
 app.use(express.static(__dirname));
 
 app.use(bodyParser.json());
@@ -61,7 +64,7 @@ app.post('/register', function(req,res){
             ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'userdata.json']);
         });
 
-        return res.redirect('login.html');
+        return res.redirect('/login');
      }	
 });
 
@@ -102,11 +105,53 @@ app.post('/login', function(req,res)
 
         ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
 
-        return res.redirect('menu.html');
+        return res.redirect('/menu');
     }
 });
 
+///////////////////////////////////////////////
+app.post('/fuelQuoteForm1', function(req,res)
+{
+    var address = "";
+    var city  = "";
+    var state = "";
+    var zipcode = "";
 
+    const copyOfCurrentUser = require('./currentUser.json');
+
+    copyOfCurrentUser.forEach(function(objPeople)
+    {
+        username = objPeople.username;
+        address = objPeople.addrLine1;
+        city = objPeople.city;
+        state = objPeople.state;
+        zipcode = objPeople.zip;
+
+    });
+    var gallons = req.body.gallonsR;
+    var date = req.body.deliveryDate;
+    var suggPrice = "2.80";
+    var total = gallons*suggPrice;
+
+    var quote = 
+    {
+        "username": username,
+        "gallonsReq": gallons,
+        "suggPrice": suggPrice,
+        "total": total,
+        "date": date
+    }
+
+    db.collection('quotes').insertOne(quote,function(err, collection)
+    {
+        if (err) throw err;
+        console.log("Record inserted Successfully");
+        ls = spawn('mongoexport',['--db', 'gfg','--collection', 'quotes', '--jsonArray', '--out', 'quotes.json']);
+    });
+
+    return res.redirect('/finalSubmissionForm');
+});
+///////////////////////////////////////////////////
 app.post('/clientProfileName', function(req,res)
 {
     var fullname = req.body.name;
@@ -141,16 +186,64 @@ app.post('/clientProfileName', function(req,res)
         console.log("Current user data updated");
     });
 
-    return res.redirect('menu.html');
+    ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
+
+    return res.redirect('/menu');
  });
 
+ app.get('/fuelQuoteForm', function(req, res){
 
+    var address = "";
+    var city  = "";
+    var state = "";
+    var zipcode = "";
+
+    const copyOfCurrentUser = require('./currentUser.json');
+
+    copyOfCurrentUser.forEach(function(objPeople)
+    {
+        //username = objPeople.username;
+        address = objPeople.addrLine1;
+        city = objPeople.city;
+        state = objPeople.state;
+        zipcode = objPeople.zip;
+
+    });
+    console.log(address + " " + city + " " + state + " " + zipcode);
+    res.render('pages/fuelQuoteForm',
+    {
+        address: address,
+        city: city,
+        state: state,
+        zipcode: zipcode
+    });
+ });
+
+app.get('/menu', function(req, res){
+    res.render('pages/menu');
+});
+
+app.get('/login', function(req, res){
+    res.render('pages/login');
+});
+
+app.get('/clientProfileName', function(req, res){
+    res.render('pages/clientProfileName');
+});
+
+app.get('/finalSubmissionForm', function(req, res){
+    res.render('pages/finalSubmissionForm');
+});
+
+app.get('/fuelQuoteHistory', function(req, res){
+    res.render('pages/fuelQuoteHistory');
+});
 
 app.get('/',function(req,res){
 res.set({
 	'Access-control-Allow-Origin': '*'
 	});
-return res.redirect('clientRegistration.html');
+return res.redirect('/login');
 }).listen(3001)
 
 
