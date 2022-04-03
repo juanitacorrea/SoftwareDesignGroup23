@@ -15,17 +15,17 @@
  <fqsflabels>Delivery Date</fqsflabels><br><br><br>
  <fqsflabels>Price per Gallon</fqsflabels><br><br><br>
 <fqsflabels>Total Amount Due</fqsflabels><br><br><br>-->
-<fqsflabels>Gallons: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "gallons"></span></fqsflabels><br><br><br><br>
-<fqsflabels>Address: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "addr"></span></fqsflabels><br><br><br><br>
-<fqsflabels>Suggested Price Per Gallon: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "sugg"></span></fqsflabels><br><br><br><br>
-<fqsflabels>Total: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "total1"></span></fqsflabels><br><br><br><br>
+<fqsflabels>Gallons: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "gallons"><%=gallons%></span></fqsflabels><br><br><br><br>
+<fqsflabels>Address: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "addr"><%=address%></span></fqsflabels><br><br><br><br>
+<fqsflabels>Suggested Price Per Gallon: <span style = "color:rgb(255, 255, 255); font-size: 12pt;" id = "sugg"><%=suggPrice%></span></fqsflabels><br><br><br><br>
+<fqsflabels>Total: <span style = "color:rgb(255, 255, 255); font-size: 12pt;"id = "total1"><%=total%></span></fqsflabels><br><br><br><br>
 
-<script>
+<!-- <script>
    document.getElementById("gallons").innerHTML = sessionStorage.getItem('mostRecentGallons');
    document.getElementById("addr").innerHTML = sessionStorage.getItem('mostRecentAddr');
    document.getElementById("sugg").innerHTML = sessionStorage.getItem('mostRecentSugg');
    document.getElementById("total1").innerHTML = sessionStorage.getItem('mostRecentTotal');
-</script>
+</script> -->
 <input type="submit" id = "payment" value="Continue to Payment" href = '/menu'>
 </body>
 <br>
