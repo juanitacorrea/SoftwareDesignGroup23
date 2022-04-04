@@ -1,19 +1,22 @@
 <!DOCTYPE html> 
 <link rel="stylesheet" href="stylesheet.css">
+<span style = "zoom: 120%"></span>
 
 <html>
     <head>
         <meta charset="utf-8">
         <title> Fuel Quote Form </title> 
-        <script src="fuelQuote.js" defer></script>
+        <!-- <script src="fuelQuote.js" defer></script> -->
     </head>
 
 <body>
     <h1>Fuel Quote Form<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
     <instructionalUnderscore>Fill the data fields to revieve a quote.</instructionalUnderscore>
 
+
 </body>
 
+<form action = '/fuelQuoteForm1' method = "post">
 <body>
     <p>
       <fqfLabels for="gallonsR">Gallons Requested&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
@@ -29,19 +32,12 @@
         <th id = "rowBox">Zipcode</th>
       </tr>
       <tr>
-        <td width = "800" height = "45"><span id = "address1InputBoxesFQ"></span></td>
-        <td><span id = "cityInputBoxesFQ"></span></td>
-        <td><span id = "stateInputBoxesFQ"></span></td>
-        <td><span id = "zipcodeInputBoxesFQ"></span></td>
+        <td width = "200" height = "45"><span id = "address1InputBoxesFQ"><%=address%></span></td>
+        <td><span id = "cityInputBoxesFQ"><%=city%></span></td>
+        <td><span id = "stateInputBoxesFQ"><%=state%></span></td>
+        <td><span id = "zipcodeInputBoxesFQ"><%=zipcode%> </td>
       </tr>
     </table>
-    
-     <script>
-      document.getElementById("address1InputBoxesFQ").innerHTML = sessionStorage.getItem('currentUserAddr1');
-      document.getElementById("cityInputBoxesFQ").innerHTML = sessionStorage.getItem('city');
-      document.getElementById("stateInputBoxesFQ").innerHTML = sessionStorage.getItem('state');
-      document.getElementById("zipcodeInputBoxesFQ").innerHTML = sessionStorage.getItem('zipcode');
-   </script>
 
    </p>
 
@@ -51,11 +47,10 @@
     </p>
     <p>
         <fqfLabels for="pricePerGallon">Suggested Price/Gallon</fqfLabels>
-        <input type="number" value= 2.80 id ="sugPriceInputBoxes" readonly/>
+        <input type="number" value = 2.80 id ="sugPriceInputBoxes" readonly/>
     </p>
     <p>
         <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
-        <!--<input type = "number" readonly id ="total" rows="4" cols="30" placeholder = "Enter input to calculate "></textarea> <readonly></readonly>-->
         <input type="number" readonly id="total" name ="calcBox">
         <input type="button" name="clickbtn" id="calculatetotalamountButton" value="Get Quote" onclick="multipy_number()">
         <script>
@@ -70,16 +65,16 @@
         <div id ="totalAmount"></div>
     </p>
     <p>
-        <input type="submit" id = "submit" value="Submit" href = 'finalSubmissionForm.html'>
+        <input type="submit" id = "submit" value="Submit" href = '/finalSubmissionForm'>
     </p>
     <br>
     <div id="formErrors"></div>
-
   </body>
+</form>
 
   <body>
     <labelPretext for="Return"><b>Return to</b></labelPretext>
-    <a id = "normalLink" href="menu.html">menu</a><br>
+    <a id = "normalLink" href="/menu">menu</a><br>
 
     <labelPretext><span style = "color:rgb(175, 146, 255); font-size: 18pt;">*</span>required field</labelPretext>
 

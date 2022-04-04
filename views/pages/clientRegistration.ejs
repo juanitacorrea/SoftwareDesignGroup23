@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="stylesheet.css">
+        <!-- <script src="js/register.js" defer></script> -->
+    </head>
+   
+
+    
+<body>
+    
+    <h1>Sign Up<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
+    <instructionalUnderscore>Please fill in the info to create an account</instructionalUnderscore>
+    <br>
+    <br>
+    <div class="container"></div>
+        <form action="/register" method="post">
+        <label for="username"></label>
+        <input type="text" placeholder="Enter Username" name="username" id="usernameInputBoxes" required/>
+        <br>
+        <br>
+
+        <label for="psw"><b></b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="passwordInputBoxes" required/>
+        <br>
+        <br>
+
+        <label for="psw-repeat"><b></b></label>
+        <input type="password" placeholder="Repeat Password" name="pswCheck" id="passwordCheckInputBoxes" required/>
+        <br>
+        <br>
+        <input type="submit" id = "submit" value="Submit"/>
+        </form>
+        <script>
+            document.getElementById("submit").addEventListener("click", function(event) 
+            {
+                const name = document.getElementById('usernameInputBoxes');
+                const password = document.getElementById('passwordInputBoxes');
+                const passwordCheckInputBoxes = document.getElementById('passwordCheckInputBoxes');
+                const error = document.getElementById('formErrors');
+                let errorsFound = false;
+
+                
+                if (!name.value) //makes sure that you inputted something in the name box
+                {
+                    errorsFound = true;
+                    name.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const nameErr = document.createElement("li");
+                    nameErr.textContent = "Missing full name.";
+                    error.appendChild(nameErr);
+                }
+
+                if (password.value.length < 10 || password.value.length > 20) //checks to make sure the password is withing the length restrictions
+                {
+                    errorsFound = true;
+                    password.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const passErr1 = document.createElement("li");
+                    passErr1.textContent = "Password must be between 10 and 20 characters.";
+                    error.appendChild(passErr1);
+                }
+
+                if (!password.value || !/[a-z]/.test(password.value)) //checks to make sure that the password has lower case letters
+                {
+                    errorsFound = true;
+                    password.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const passErr2 = document.createElement("li");
+                    passErr2.textContent = "Password must contain at least one lowercase character.";
+                    error.appendChild(passErr2);
+                }
+
+                if (!password.value || !/[A-Z]/.test(password.value)) //checks to make sure the password has uppercase letters
+                {
+                    errorsFound = true;
+                    password.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const passErr3 = document.createElement("li");
+                    passErr3.textContent = "Password must contain at least one uppercase character.";
+                    error.appendChild(passErr3);
+                }
+
+                if (!password.value || !/[0-9]/.test(password.value)) //checks to make sure that the password has numbers in it
+                {
+                    errorsFound = true;
+                    password.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const passErr4 = document.createElement("li");
+                    passErr4.textContent = "Password must contain at least one digit.";
+                    error.appendChild(passErr4);
+                }
+
+                if (passwordCheckInputBoxes && password.value !== passwordCheckInputBoxes.value) //checks to make sure that the confirmation password is the same
+                {
+                    errorsFound = true;
+                    password.style = "border: 2px solid red;";
+                    passwordCheckInputBoxes.style = "border: 2px solid red;";
+                    error.style = "display: block";
+                    const passErr5 = document.createElement("li");
+                    passErr5.textContent = "Password and confirmation password don't match.";
+                    error.appendChild(passErr5);
+                }
+
+                if (errorsFound === false) 
+                {
+                    error.style = "display: none";
+                    name.style = "border: 1px solid #aaa;";
+                    password.style = "border: 1px solid #aaa;";
+                    passwordCheckInputBoxes.style = "border: 1px solid #aaa;";
+
+                    var userData = new Object();
+                    userData={username:name.value, password:password.value, fullName: "",addrLine1: "",addrLine2: "",city: "",state: "",quotes: []};
+                    objPeople.push(userData);
+                    console.log(objPeople);
+                    localStorage.setItem('users', JSON.stringify(objPeople));
+                    //window.location.href = "login.html";
+                }
+        });
+        </script>
+        <br>
+        <br>
+        <div id="formErrors"></div>
+        <br>
+        <labelPretext for="Register"><b>Already have an account?</b></labelPretext>
+        <a id = "normalLink" href="/login">Login</a><br>
+    
+</body>
+
+
+
+</html>
