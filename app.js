@@ -354,13 +354,27 @@ app.get('/fuelQuoteHistory', function(req, res)
     });
 
     var query = { username: username };
+    const quoteHist = [];
     db.collection("quotes").find(query).toArray(function(err, result) 
     {
         if (err) throw err;
         console.log(result);
-        
+
+        result.forEach(function(q)
+        {
+            quoteHist.push("Gallons: " + q.gallonsReq + " Suggested Price: " + q.suggPrice + " Total: " + q.total + " Date: " + q.date);
+        });
+        console.log(quoteHist);
+        res.render('pages/fuelQuoteHistory',
+        {
+            quoteHist:quoteHist
+        });
     });
-    res.render('pages/fuelQuoteHistory');
+
+   
+    
+
+    
 });
 
 //** CLIENT REGISTRATION GET FUNCTION **//////////////////////////////////////////////////

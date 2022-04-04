@@ -9,7 +9,11 @@
     <instructionalUnderscore>Below you will find your Fuel Quote History.</instructionalUnderscore>
  </section>
 <br>
-<div id="quotes"></div>
+        <% quoteHist.forEach(function(q) { %>
+          <li>
+            <span style="color:antiquewhite"><%= q %></span>
+          </li>
+        <% }); %>
 <br>
     <labelPretext for="Return"><b>Return to</b></labelPretext>
     <a id = "normalLink" href="/menu">menu</a><br>
