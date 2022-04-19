@@ -13,6 +13,15 @@ function calcAmount(gallonsRequested, sugPriceInputBoxes)
     return amountDue.toFixed(2);
 }
 
+function calcAmountWithMargin(gallons, currentPrice, locationFactor, rateHistory, gallonsRegFactor, companyProfitFactor)
+{
+   var margin = currentPrice * (locationFactor - rateHistory + gallonsRegFactor + companyProfitFactor);
+   var suggPrice = currentPrice + margin;
+   var totalAmountWMargin = gallons * suggPrice;
+
+   return totalAmountWMargin;
+}
+
 function inputInformation() 
 {
    const gallonsRequested = document.getElementById('gallonsInputBoxes');

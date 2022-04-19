@@ -418,6 +418,16 @@ fqsflabels
     color: white;
 }
 
+#fQHistory {
+    color: rgba(255, 255, 255, 0.582);
+    border-radius: 14px;
+    border: 0px solid powderblue;
+    background: rgba(255, 255, 255, 0.151);
+    padding: 10px; 
+    width: 200px;
+    height: 20px;    
+}
+
 option
 {
     color: white;
