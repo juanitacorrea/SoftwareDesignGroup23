@@ -26,16 +26,16 @@
      <!--<fqfLabels for="address">Delivery Address</fqfLabels>-->
      <table>
       <tr>
-        <th id = "rowBox">Address</th>
-        <th id = "rowBox">City</th>
-        <th id = "rowBox">State</th>
-        <th id = "rowBox">Zipcode</th>
+        <th id = "rowBox" width = "400" height = "45">Address</th>
+        <th id = "rowBox" width = "200" height = "45">City</th>
+        <th id = "rowBox" width = "200" height = "45">State</th>
+        <th id = "rowBox" width = "200" height = "45">Zipcode</th>
       </tr>
       <tr>
-        <td width = "200" height = "45"><span id = "address1InputBoxesFQ"><%=address%></span></td>
-        <td><span id = "cityInputBoxesFQ"><%=city%></span></td>
-        <td><span id = "stateInputBoxesFQ"><%=state%></span></td>
-        <td><span id = "zipcodeInputBoxesFQ"><%=zipcode%> </td>
+        <td width = "400" height = "45"><span id = "address1InputBoxesFQ"><%=address%></span></td>
+        <td width = "200" height = "45"><span id = "cityInputBoxesFQ"><%=city%></span></td>
+        <td width = "200" height = "45"><span id = "stateInputBoxesFQ"><%=state%></span></td>
+        <td  width = "200" height = "45"><span id = "zipcodeInputBoxesFQ"><%=zipcode%> </td>
       </tr>
     </table>
 
@@ -50,7 +50,7 @@
         <input type="number" value = 2.80 id ="sugPriceInputBoxes" readonly/>
     </p>
     <p>
-        <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels>
+        <!-- <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels> -->
         <input type="number" readonly id="total" name ="calcBox">
         <input type="button" name="clickbtn" id="calculatetotalamountButton" value="Get Quote" onclick="multipy_number()">
         <script>

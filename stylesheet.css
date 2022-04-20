@@ -324,7 +324,7 @@ fqfLabels
     width: 200px;
     height: 40px; 
     text-align: center;
-    margin-right: 2px;
+    /* margin-left: 2px; */
 }
 
 fqsflabels
@@ -364,9 +364,9 @@ fqsflabels
 }
 #rowBox {
     border-radius: 14px;
-    color: white;
+    color: rgba(255, 255, 255, 0.873);
     border: 3px solid rgb(175, 146, 255);
-    background: rgb(175, 146, 255);
+    background: rgba(175, 146, 255, 0);
     padding: 10px; 
     width: 150px;
     height: 12px;   
@@ -412,7 +412,7 @@ fqsflabels
     background: rgb(175, 146, 255);
     color: rgba(255, 255, 255, 0.582);
     padding: 5px; 
-    width: 75px;
+    width: 175px;
     height: 35px;    
     margin-bottom: 3px;
     color: white;
