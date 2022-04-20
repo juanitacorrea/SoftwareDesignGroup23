@@ -172,7 +172,7 @@ app.post('/fuelQuoteForm1', function(req,res)
     var gallons = req.body.gallonsR;
     var date = req.body.deliveryDate;
 
-    // var suggPrice = "2.80";
+    var suggPrice = "1.5";
     var currentPrice = 1.50
     var locationFactor = .02 // .02 for texas and .04 for another state 
     var rateHistory = .01 //.01 if history and .00 if no history
@@ -186,7 +186,7 @@ app.post('/fuelQuoteForm1', function(req,res)
     
     //var margin = currentPrice * (locationFactor - rateHistory + gallonsRegFactor + companyProfitFactor)
     //var suggPrice = currentPrice + margin
-    //var total = gallons * suggPrice; GETTING TOTAL PRICE FROM FUNCTION
+    var total = gallons * suggPrice; //GETTING TOTAL PRICE FROM FUNCTION
 
     var quote = 
     {
