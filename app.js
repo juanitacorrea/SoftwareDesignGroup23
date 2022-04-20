@@ -1,5 +1,6 @@
 const reg = require("./register");
 const login = require("./login");
+const fq = require("./fuelQuote");
 
 var currentUser = "";
 var express=require("express");
@@ -9,6 +10,7 @@ var app = express();
 app.set('view engine', 'ejs');
 
 const mongoose = require('mongoose');
+const { stat } = require("fs/promises");
 mongoose.connect('mongodb://localhost:27017/gfg');
 var db=mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
@@ -150,6 +152,7 @@ app.post('/login', function(req,res)
 //** FUEL QUOTE FORM POST FUNCTION **//////////////////////////////////////////////////
 app.post('/fuelQuoteForm1', function(req,res)
 {
+    const copyOfQuotes = require('./quotes.json');
     var address = "";
     var city  = "";
     var state = "";
@@ -168,26 +171,40 @@ app.post('/fuelQuoteForm1', function(req,res)
         zipcode = objPeople.zip;
 
     });
-
+    console.log("STATE", state);
     var gallons = req.body.gallonsR;
     var date = req.body.deliveryDate;
 
-    var suggPrice = "1.5";
     var currentPrice = 1.50
     var locationFactor = .02 // .02 for texas and .04 for another state 
-    var rateHistory = .01 //.01 if history and .00 if no history
+    if(state == "TX")
+    {
+        locationFactor = 0.02
+    }
+    else 
+    {
+        locationFactor = 0.04
+    }
+    
+    var rateHistory = 0 //.01 if history and .00 if no history
+    if (fq.isInQuotes(username, copyOfQuotes, 0) == 1)
+    {
+        rateHistory = .01
+        console.log("User was there")
+    }
+
     var gallonsRegFactor = .02 //.02 if >1000 gals and .03 if less
     if (gallons < 1000)
     {
         gallonsRegFactor = .03
     }
     
-    var companyProfitFactor = .10
+    var companyProfitFactor = .10 //constant
     
     //var margin = currentPrice * (locationFactor - rateHistory + gallonsRegFactor + companyProfitFactor)
     //var suggPrice = currentPrice + margin
-    var total = gallons * suggPrice; //GETTING TOTAL PRICE FROM FUNCTION
-
+    var suggPrice = fq.calcSuggPrice(gallons, currentPrice, locationFactor, rateHistory, gallonsRegFactor, companyProfitFactor);
+    var total = fq.calcAmountWithMargin(gallons, suggPrice)
     var quote = 
     {
         "username": username,
@@ -284,7 +301,8 @@ app.post('/clientProfileName', function(req,res)
 //** FUEL QUOTE FORM GET FUNCTION **//////////////////////////////////////////////////
  app.get('/fuelQuoteForm', function(req, res)
  {
-
+    ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
+    
     var address = "";
     var city  = "";
     var state = "";
@@ -402,7 +420,7 @@ res.set({
 	'Access-control-Allow-Origin': '*'
 	});
 return res.redirect('/login');
-}).listen(3001)
+}).listen(3000)
 
 
 console.log("server listening at port 3000");
