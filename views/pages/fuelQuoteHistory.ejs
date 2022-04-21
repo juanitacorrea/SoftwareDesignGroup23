@@ -6,13 +6,16 @@
 <body>
  <h1>Fuel Quote History<span style = "color:rgb(175, 146, 255); font-size: 24pt;">.</span></h1>
  <section>
-    <instructionalUnderscore>Below you will find your Fuel Quote History.</instructionalUnderscore>
+    <instructionalUnderscore>Below you will find your Fuel Quote History. <br></instructionalUnderscore>
  </section>
 <br>
         <% quoteHist.forEach(function(q) { %>
           <li>
-            <span id ="fQHistory"><%= q %></span>
+            <span id ="FQHistory"><%= q %></span>
+            <br>
           </li>
+          <br>
+          <br>
         <% }); %>
 <br>
     <labelPretext for="Return"><b>Return to</b></labelPretext>
