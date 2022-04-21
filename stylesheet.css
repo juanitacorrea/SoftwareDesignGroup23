@@ -418,14 +418,15 @@ fqsflabels
     color: white;
 }
 
-#fQHistory {
-    color: rgba(255, 255, 255, 0.582);
+#FQHistory {
     border-radius: 14px;
-    border: 0px solid powderblue;
-    background: rgba(255, 255, 255, 0.151);
+    color: rgba(255, 255, 255, 0.873);
+    border: 3px solid rgb(175, 146, 255);
+    background: rgba(175, 146, 255, 0);
     padding: 10px; 
-    width: 200px;
-    height: 20px;    
+    width: 150px;
+    height: 12px;  
+
 }
 
 option
