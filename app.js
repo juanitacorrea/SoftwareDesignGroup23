@@ -1,6 +1,22 @@
 const reg = require("./register");
 const login = require("./login");
 const fq = require("./fuelQuote");
+let globalAddy = "global addy";
+
+let currentUserGlobal = 
+        {
+                "username":"",
+                "fullName": "",
+                "addrLine1": "",
+                "addrLine2": "",
+                "city": "",
+                "state": "",
+                "zip": "",
+                "bVal": "val",
+                "mostRecentGal": "",
+                "mostRecentTotal": "",
+                "mostRecentSugPrice": ""
+        }
 
 var currentUser = "";
 var express=require("express");
@@ -128,6 +144,23 @@ app.post('/login', function(req,res)
                 "mostRecentSugPrice": ""
             }
         }
+
+
+        currentUserGlobal = 
+        {
+                "username":uname,
+                "fullName": fullName,
+                "addrLine1": addrLine1,
+                "addrLine2": addrLine2,
+                "city": city,
+                "state": state,
+                "zip": zip,
+                "bVal": "val",
+                "mostRecentGal": "",
+                "mostRecentTotal": "",
+                "mostRecentSugPrice": ""
+        }
+
         // db.collection('currentUser').insertOne(data,function(err, collection)
         // {
         //     if (err) throw err;
@@ -153,25 +186,40 @@ app.post('/login', function(req,res)
 app.post('/fuelQuoteForm1', function(req,res)
 {
     const copyOfQuotes = require('./quotes.json');
+
+    const copyOfCurrentUser = require('./currentUser.json');
+
+    var fullname = "";
+    var username = "";
     var address = "";
+    var address2 = "";
     var city  = "";
     var state = "";
     var zipcode = "";
 
-    const copyOfCurrentUser = require('./currentUser.json');
 
-    copyOfCurrentUser.forEach(function(objPeople)
-    {
-        fullname = objPeople.fullName;
-        username = objPeople.username;
-        address = objPeople.addrLine1;
-        address2 = objPeople.addrLine2;
-        city = objPeople.city;
-        state = objPeople.state;
-        zipcode = objPeople.zip;
+    // copyOfCurrentUser.forEach(function(objPeople)
+    // {
+    //     fullname = objPeople.fullName;
+    //     username = objPeople.username;
+    //     address = objPeople.addrLine1;
+    //     address2 = objPeople.addrLine2;
+    //     city = objPeople.city;
+    //     state = objPeople.state;
+    //     zipcode = objPeople.zip;
+    //     console.log(state);
+    // });
 
-    });
-    console.log("STATE", state);
+    fullname = currentUserGlobal.fullName;
+    username = currentUserGlobal.username;
+    address = currentUserGlobal.addrLine1;
+    address2 = currentUserGlobal.addrLine2;
+    city = currentUserGlobal.city;
+    state = currentUserGlobal.state;
+    zipcode = currentUserGlobal.zip;
+    console.log(state);
+    
+
     var gallons = req.body.gallonsR;
     var date = req.body.deliveryDate;
 
@@ -239,15 +287,32 @@ app.post('/fuelQuoteForm1', function(req,res)
                 "mostRecentSugPrice": suggPrice
             }
         }
+
+        currentUserGlobal = 
+        {
+            "username":username,
+            "fullName": fullname,
+            "addrLine1": address,
+            "addrLine2": address2,
+            "city": city,
+            "state": state,
+            "zip": zipcode,
+            "bVal": "val",
+            "mostRecentGal": gallons,
+            "mostRecentTotal": total,
+            "mostRecentSugPrice": suggPrice
+        }
+    
+    
     var myquery = { bVal: "val" };
 
     db.collection('currentUser').updateOne(myquery, data, function(err, res) 
     {
         if (err) throw err;
         console.log("Current user data updated");
+        ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
     });
         
-    ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
     return res.redirect('/finalSubmissionForm');
 });
 
@@ -263,6 +328,24 @@ app.post('/clientProfileName', function(req,res)
     var state = req.body.state;
     var zip = req.body.zipcode;
 
+
+    currentUserGlobal = 
+        {
+                "username":currentUserGlobal.username,
+                "fullName": fullname,
+                "addrLine1": addrLine1,
+                "addrLine2": addrLine2,
+                "city": city,
+                "state": state,
+                "zip": zip,
+                "bVal": "val",
+                "mostRecentGal": "",
+                "mostRecentTotal": "",
+                "mostRecentSugPrice": ""
+        }
+
+
+    globalAddy = addrLine1;
     // assigning the username that's found in currentUser
     const copyOfCurrentUser = require('./currentUser.json');
     var username = "";
@@ -273,6 +356,7 @@ app.post('/clientProfileName', function(req,res)
 
     // updating that user's data
     var myquery = { username: username };
+    var myquery2 = { bVal: "val" };
     var newvalues = { $set: {username: username, fullName: fullname, addrLine1: addrLine1, addrLine2: addrLine2, city: city, state: state, zip: zip } };
     var newCurrentUserValues = { $set: {username: username, fullName: fullname, addrLine1: addrLine1, addrLine2: addrLine2, city: city, state: state, zip: zip,  bVal: "val"} };
     db.collection('userdata').updateOne(myquery, newvalues, function(err, res) 
@@ -282,7 +366,7 @@ app.post('/clientProfileName', function(req,res)
     });
 
     //updating the currentUser's data
-    db.collection('currentUser').updateOne(myquery, newCurrentUserValues, function(err, res) 
+    db.collection('currentUser').updateOne(myquery2, newCurrentUserValues, function(err, res) 
     {
         if (err) throw err;
         console.log("Current user data updated");
@@ -301,27 +385,32 @@ app.post('/clientProfileName', function(req,res)
 //** FUEL QUOTE FORM GET FUNCTION **//////////////////////////////////////////////////
  app.get('/fuelQuoteForm', function(req, res)
  {
-    ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
+    //ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
     
     var address = "";
     var city  = "";
     var state = "";
     var zipcode = "";
 
-    const copyOfCurrentUser = require('./currentUser.json');
+    var copyOfCurrentUser = require('./currentUser.json');
 
-    copyOfCurrentUser.forEach(function(objPeople)
-    {
-        address = objPeople.addrLine1;
-        city = objPeople.city;
-        state = objPeople.state;
-        zipcode = objPeople.zip;
+    // copyOfCurrentUser.forEach(function(objPeople)
+    // {
+    //     address = objPeople.addrLine1;
+    //     city = objPeople.city;
+    //     state = objPeople.state;
+    //     zipcode = objPeople.zip;
 
-    });
+    // });
+
+    address = currentUserGlobal.addrLine1;
+    city = currentUserGlobal.city;
+    state = currentUserGlobal.state;
+    zipcode = currentUserGlobal.zip;
 
     res.render('pages/fuelQuoteForm',
     {
-        address: address,
+        address: globalAddy,
         city: city,
         state: state,
         zipcode: zipcode
@@ -354,16 +443,20 @@ app.get('/finalSubmissionForm', function(req, res){
 
     const copyOfCurrentUser = require('./currentUser.json');
 
-    copyOfCurrentUser.forEach(function(objPeople)
-    {
-        //username = objPeople.username;
-        gallons = objPeople.mostRecentGal;
-        address = objPeople.addrLine1;
-        suggPrice = objPeople.mostRecentSugPrice;
-        total = objPeople.mostRecentTotal;
+    // copyOfCurrentUser.forEach(function(objPeople)
+    // {
+    //     //username = objPeople.username;
+    //     gallons = objPeople.mostRecentGal;
+    //     address = objPeople.addrLine1;
+    //     suggPrice = objPeople.mostRecentSugPrice;
+    //     total = objPeople.mostRecentTotal;
 
-    });
+    // });
 
+    gallons = currentUserGlobal.mostRecentGal;
+    address = currentUserGlobal.addrLine1;
+    suggPrice = currentUserGlobal.mostRecentSugPrice;
+    total = currentUserGlobal.mostRecentTotal;
     
     res.render('pages/finalSubmissionForm',
     {
