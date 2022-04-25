@@ -187,7 +187,7 @@ app.post('/fuelQuoteForm1', function(req,res)
 {
     const copyOfQuotes = require('./quotes.json');
 
-    const copyOfCurrentUser = require('./currentUser.json');
+    //const copyOfCurrentUser = require('./currentUser.json');
 
     var fullname = "";
     var username = "";
@@ -487,7 +487,7 @@ app.get('/fuelQuoteHistory', function(req, res)
 
         result.forEach(function(q)
         {
-            quoteHist.push("Gallons: " + q.gallonsReq + " Suggested Price: " + q.suggPrice + " Total: " + q.total + " Date: " + q.date);
+            quoteHist.push("Gallons: " + q.gallonsReq + ", Suggested Price: " + q.suggPrice.toFixed(2) + ", Total: " + q.total.toFixed(2) + ", Date: " + q.date);
         });
         console.log(quoteHist);
         res.render('pages/fuelQuoteHistory',
