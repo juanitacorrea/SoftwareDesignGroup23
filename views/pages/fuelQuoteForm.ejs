@@ -47,18 +47,48 @@
     </p>
     <p>
         <fqfLabels for="pricePerGallon">Suggested Price/Gallon</fqfLabels>
-        <input type="number" value = 2.80 id ="sugPriceInputBoxes" readonly/>
+        <input type="number" value="1.50" id ="sugPriceInputBoxes" readonly/>
+        <input type="hidden" value= "<%=coeff%>" id ="coeff" readonly/>
     </p>
     <p>
         <!-- <fqfLabels for="total">Total Amount due&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</fqfLabels> -->
+        <!-- <span type = "number" id ="coeff" value = ".13"></span> -->
         <input type="number" readonly id="total" name ="calcBox">
         <input type="button" name="clickbtn" id="calculatetotalamountButton" value="Get Quote" onclick="multipy_number()">
+
+        
+
         <script>
           function multipy_number()
           {
-            const first_number = document.getElementById("gallonsInputBoxes").value;
+            var gallons = parseFloat(document.getElementById("gallonsInputBoxes").value);
             const second_number = document.getElementById("sugPriceInputBoxes").value;
-            document.getElementById("total").value = (first_number*second_number).toFixed(2); 
+            var coeff1 = parseFloat(document.getElementById("coeff").value);
+
+            //console.log("suggPrice is: " + coeff1.value);
+            console.log("coeff is: " + coeff1);
+
+            var gallonsRegFactor = .02 //.02 if >1000 gals and .03 if less
+            if (gallons < 1000)
+            {
+                gallonsRegFactor = .03
+            }
+
+            
+            var totalCoeff = coeff1 + gallonsRegFactor;
+            console.log("totalCoeff is: " + totalCoeff);
+            var margin = 1.5*totalCoeff;
+            var newSuggestedPrice = margin + 1.5;
+            var result = (gallons*newSuggestedPrice); 
+            console.log("Gallons is: " + gallons + "  and newSuggestedPrice is: " + newSuggestedPrice);
+            console.log("Result is: " + result);
+            document.getElementById("total").value = result;
+            //pass the margin without gallons factor
+            //get gallons factor
+            //add it to the margin
+            //multiply that by 1.5
+            //add that to 1.5
+            //multiply that by gallons
           }
         </script>
 
