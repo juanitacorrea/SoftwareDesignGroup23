@@ -9,6 +9,19 @@ html
     transform: translateX(-50%) translateY(-50%);
     zoom: 140%;
 }
+
+newOne
+{
+    background-color: rgb(15, 15, 15);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* background-color: rgb(212, 212, 212); */
+    text-align: center;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    zoom: 80%;
+}
+
 h1
 {
     font-size: 18pt;
@@ -81,7 +94,7 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 200px;
-    height: 20px;    
+    height: 20px;  
 }
 #addres2InputBoxes {
     color: rgba(255, 255, 255, 0.582);
@@ -99,7 +112,7 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 200px;
-    height: 20px;    
+    height: 20px;  
 }
 #cityInputBoxes {
     color: rgba(255, 255, 255, 0.582);
@@ -127,6 +140,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px; 
+    font-size: 10pt;
 }
 #addres2InputBoxesFQ {
     border-radius: 14px;
@@ -136,6 +150,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;   
+    font-size: 10pt;
 }
 #zipcodeInputBoxesFQ {
     border-radius: 14px;
@@ -145,6 +160,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;     
+    font-size: 10pt;
 }
 #cityInputBoxesFQ {
     border-radius: 14px;
@@ -154,6 +170,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;     
+    font-size: 10pt;
 }
 #stateInputBoxesFQ {
     border-radius: 14px;
@@ -162,7 +179,8 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 150px;
-    height: 12px;     
+    height: 12px;  
+    font-size: 10pt;   
 }
 
 #usernameInputBoxes {
@@ -426,6 +444,7 @@ fqsflabels
     padding: 10px; 
     width: 150px;
     height: 12px;  
+    font-size: 10pt;
 
 }
 
