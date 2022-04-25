@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 
 const mongoose = require('mongoose');
 const { stat } = require("fs/promises");
+const { hasSubscribers } = require("diagnostics_channel");
 mongoose.connect('mongodb://localhost:27017/gfg');
 var db=mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
@@ -51,6 +52,54 @@ var spawn = require('child_process').spawn;
 //** REGISTER POST FUNCTION **//////////////////////////////////////////////////
 app.post('/register', function(req,res)
 {
+    // requiring bycrypt module
+    const bcrypt = require('bcryptjs');
+    
+    var password = req.body.psw;
+    var hashedPassword;
+    
+    // encryption of the string password
+    bcrypt.genSalt(10, function (err, Salt) {
+    
+        // The bcrypt is used for encrypting password.
+        bcrypt.hash(password, Salt, function (err, hash) {
+    
+            if (err) {
+                return console.log('Cannot encrypt');
+            }
+    
+            hashedPassword = hash;
+            console.log(hash);
+    
+            bcrypt.compare(password, hashedPassword, 
+                async function (err, isMatch) {
+    
+                // Comparing the original password to
+                // encrypted password   
+                if (isMatch) {
+                    console.log('Encrypted password is: ', password);
+                    console.log('Decrypted password is: ', hashedPassword);
+                }
+    
+                if (!isMatch) {
+                
+                    // If password doesn't match the following
+                    // message will be sent
+                    console.log(hashedPassword + ' is not encryption of ' 
+                    + password);
+                }
+            })
+
+            
+            var loginData = {
+                "username":username,
+                "password":hashedPassword
+            }
+
+            db.collection('loginCredentials').insertOne(loginData)
+        })
+    })
+
     var username = req.body.username;
     var psw = req.body.psw;
     var pswCheck = req.body.pswCheck;
@@ -65,30 +114,38 @@ app.post('/register', function(req,res)
         "zip": ""
 	}
 
-    var loginData = {
-        "username":username,
-        "password":psw
-	}
-     if(reg.checkForm1(username, psw, pswCheck))
-     {
-        // login credentials get inserted into the loginCredentials collection
-        db.collection('loginCredentials').insertOne(loginData,function(err, collection)
-        {
-            if (err) throw err;
-            console.log("Login Credentials inserted Successfully");
-            ls = spawn('mongoexport',['--db', 'gfg','--collection', 'loginCredentials', '--jsonArray', '--out', 'loginInfo.json']);
-        });
+    db.collection('userdata').insertOne(data)
+    // {
+    //     if (err) throw err;
+    //     console.log("Record inserted Successfully");
+    //     ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'userdata.json']);
+    // });
 
-        // userdata gets inserted into the userdata collection with balnk values on everything but username
-        db.collection('userdata').insertOne(data,function(err, collection)
-        {
-            if (err) throw err;
-            console.log("Record inserted Successfully");
-            ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'userdata.json']);
-        });
+    // var loginData = {
+    //     "username":username,
+    //     "password":hashedPassword
+	// }
 
-        return res.redirect('/login');
-     }	
+    //  if(reg.checkForm1(username, psw, pswCheck))
+    //  {
+    //     //login credentials get inserted into the loginCredentials collection
+    //     db.collection('loginCredentials').insertOne(loginData,function(err, collection)
+    //     {
+    //         if (err) throw err;
+    //         console.log("Login Credentials inserted Successfully");
+    //         ls = spawn('mongoexport',['--db', 'gfg','--collection', 'loginCredentials', '--jsonArray', '--out', 'loginInfo.json']);
+    //     });
+
+    //     //userdata gets inserted into the userdata collection with balnk values on everything but username
+    //     db.collection('userdata').insertOne(data,function(err, collection)
+    //     {
+    //         if (err) throw err;
+    //         console.log("Record inserted Successfully");
+    //         ls = spawn('mongoexport',['--db', 'gfg','--collection', 'userdata', '--jsonArray', '--out', 'userdata.json']);
+    //     });
+
+       return res.redirect('/login');
+    // }
 });
 
 
@@ -98,6 +155,7 @@ app.post('/login', function(req,res)
 {
     var uname = req.body.uname;
     var pswd = req.body.pswd;
+    const bcrypt = require('bcryptjs');
 
     var fullName = "";
     var addrLine1 = ""; 
@@ -108,77 +166,107 @@ app.post('/login', function(req,res)
 
     console.log("username:" + uname + " password: " + pswd);
 
-    const copyOfUserdataCollection = require('./userdata.json');
-    const copyOfLoginCollection = require('./loginInfo.json');
-    if(login.isInDB(uname, pswd, copyOfLoginCollection, 0) == 1)
-    {
-        console.log("You've successfully logged in!")
-        //if userdata already exists, set these as currentUser values
-        copyOfUserdataCollection.forEach(function(objPeople)
-        {
-            if(uname == objPeople.username)
-            {
-                fullName = objPeople.fullName;
-                addrLine1 = objPeople.addrLine1; 
-                addrLine2 = objPeople.addrLine2;
-                city = objPeople.city;
-                state = objPeople.city;
-                zip = objPeople.zip;
-            }
-        });
-
-        var data = 
-        {
-            $set:
-            {
-                "username":uname,
-                "fullName": fullName,
-                "addrLine1": addrLine1,
-                "addrLine2": addrLine2,
-                "city": city,
-                "state": state,
-                "zip": zip,
-                "bVal": "val",
-                "mostRecentGal": "",
-                "mostRecentTotal": "",
-                "mostRecentSugPrice": ""
-            }
+    //const {email,password} = req.body;
+    var uname = req.body.uname;
+    var pswd = req.body.pswd;
+  
+    db.collection('loginCredentials').findOne({"username": uname})
+    .then(savedUser => {
+        if(!savedUser){
+            return res.status(422).json({error:"Invalid email or password"})
         }
+        bcrypt.compare(pswd, savedUser.pswd)
+        .then(doMatch=>{
+            if(doMatch){
+                // res.json({message:"SignIn successfull"})
+                console.log("Passwords matched")
+                const token = jwt.sign({_id:savedUser._id},JWT_SECRET)
+                const {_id,name,email,role} = savedUser
+                res.json({token,user:{_id,username}})
+            }else{
+                return res.status(422).json({error:"Invalid Email or Password"})
+            }
+        }).catch(err=>{
+            console.log(err);
+        })
+    }).
+    catch(err=>{
+        console.log(err);
+    })
+
+    return res.redirect('/menu');
+
+    // const copyOfUserdataCollection = require('./userdata.json');
+    // const copyOfLoginCollection = require('./loginInfo.json');
+    // if(login.isInDB(uname, pswd, copyOfLoginCollection, 0) == 1)
+    // {
+    //     console.log("You've successfully logged in!")
+    //     //if userdata already exists, set these as currentUser values
+    //     copyOfUserdataCollection.forEach(function(objPeople)
+    //     {
+    //         if(uname == objPeople.username)
+    //         {
+    //             fullName = objPeople.fullName;
+    //             addrLine1 = objPeople.addrLine1; 
+    //             addrLine2 = objPeople.addrLine2;
+    //             city = objPeople.city;
+    //             state = objPeople.city;
+    //             zip = objPeople.zip;
+    //         }
+    //     });
+
+    //     var data = 
+    //     {
+    //         $set:
+    //         {
+    //             "username":uname,
+    //             "fullName": fullName,
+    //             "addrLine1": addrLine1,
+    //             "addrLine2": addrLine2,
+    //             "city": city,
+    //             "state": state,
+    //             "zip": zip,
+    //             "bVal": "val",
+    //             "mostRecentGal": "",
+    //             "mostRecentTotal": "",
+    //             "mostRecentSugPrice": ""
+    //         }
+    //     }
 
 
-        currentUserGlobal = 
-        {
-                "username":uname,
-                "fullName": fullName,
-                "addrLine1": addrLine1,
-                "addrLine2": addrLine2,
-                "city": city,
-                "state": state,
-                "zip": zip,
-                "bVal": "val",
-                "mostRecentGal": "",
-                "mostRecentTotal": "",
-                "mostRecentSugPrice": ""
-        }
+    //     currentUserGlobal = 
+    //     {
+    //             "username":uname,
+    //             "fullName": fullName,
+    //             "addrLine1": addrLine1,
+    //             "addrLine2": addrLine2,
+    //             "city": city,
+    //             "state": state,
+    //             "zip": zip,
+    //             "bVal": "val",
+    //             "mostRecentGal": "",
+    //             "mostRecentTotal": "",
+    //             "mostRecentSugPrice": ""
+    //     }
 
-        // db.collection('currentUser').insertOne(data,function(err, collection)
-        // {
-        //     if (err) throw err;
-        //     console.log("Current user data updated");
-        // });
+    //     // db.collection('currentUser').insertOne(data,function(err, collection)
+    //     // {
+    //     //     if (err) throw err;
+    //     //     console.log("Current user data updated");
+    //     // });
 
-        var myquery = { bVal: "val" };
+    //     var myquery = { bVal: "val" };
 
-        db.collection('currentUser').updateOne(myquery, data, function(err, res) 
-        {
-            if (err) throw err;
-            console.log("Current user data updated");
-        });
+    //     db.collection('currentUser').updateOne(myquery, data, function(err, res) 
+    //     {
+    //         if (err) throw err;
+    //         console.log("Current user data updated");
+    //     });
 
-        ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
+    //     ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
+    //return res.redirect('/menu');
 
-        return res.redirect('/menu');
-    }
+    //}
 });
 
 
