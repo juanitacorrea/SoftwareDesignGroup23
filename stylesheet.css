@@ -94,7 +94,7 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 200px;
-    height: 20px;    
+    height: 20px;  
 }
 #addres2InputBoxes {
     color: rgba(255, 255, 255, 0.582);
@@ -112,7 +112,7 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 200px;
-    height: 20px;    
+    height: 20px;  
 }
 #cityInputBoxes {
     color: rgba(255, 255, 255, 0.582);
@@ -140,6 +140,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px; 
+    font-size: 10pt;
 }
 #addres2InputBoxesFQ {
     border-radius: 14px;
@@ -149,6 +150,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;   
+    font-size: 10pt;
 }
 #zipcodeInputBoxesFQ {
     border-radius: 14px;
@@ -158,6 +160,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;     
+    font-size: 10pt;
 }
 #cityInputBoxesFQ {
     border-radius: 14px;
@@ -167,6 +170,7 @@ labelPretext
     padding: 10px; 
     width: 150px;
     height: 12px;     
+    font-size: 10pt;
 }
 #stateInputBoxesFQ {
     border-radius: 14px;
@@ -175,7 +179,8 @@ labelPretext
     background: rgba(255, 255, 255, 0.151);
     padding: 10px; 
     width: 150px;
-    height: 12px;     
+    height: 12px;  
+    font-size: 10pt;   
 }
 
 #usernameInputBoxes {
