@@ -2,6 +2,7 @@ const reg = require("./register");
 const login = require("./login");
 const fq = require("./fuelQuote");
 let globalAddy = "global addy";
+let quotesArray = require('./quotes.json');
 
 let currentUserGlobal = 
         {
@@ -251,7 +252,7 @@ app.post('/fuelQuoteForm1', function(req,res)
     
     //var margin = currentPrice * (locationFactor - rateHistory + gallonsRegFactor + companyProfitFactor)
     //var suggPrice = currentPrice + margin
-    var suggPrice = fq.calcSuggPrice(gallons, currentPrice, locationFactor, rateHistory, gallonsRegFactor, companyProfitFactor);
+    var suggPrice = fq.calcSuggPrice(currentPrice, locationFactor, rateHistory, gallonsRegFactor, companyProfitFactor);
     var total = fq.calcAmountWithMargin(gallons, suggPrice)
     var quote = 
     {
@@ -261,6 +262,8 @@ app.post('/fuelQuoteForm1', function(req,res)
         "total": total,
         "date": date
     }
+
+    quotesArray.push(quote);
 
     db.collection('quotes').insertOne(quote,function(err, collection)
     {
@@ -321,6 +324,7 @@ app.post('/fuelQuoteForm1', function(req,res)
 //** CLIENT PROFILE NAME POST FUNCTION **//////////////////////////////////////////////////
 app.post('/clientProfileName', function(req,res)
 {
+
     var fullname = req.body.name;
     var addrLine1 = req.body.adress;
     var addrLine2 = req.body.address;
@@ -386,14 +390,48 @@ app.post('/clientProfileName', function(req,res)
  app.get('/fuelQuoteForm', function(req, res)
  {
     //ls = spawn('mongoexport',['--db', 'gfg','--collection', 'currentUser', '--jsonArray', '--out', 'currentUser.json']);
-    
+    const copyOfQuotes = require('./quotes.json');
+
+    var username = "";
     var address = "";
     var city  = "";
     var state = "";
     var zipcode = "";
 
-    var copyOfCurrentUser = require('./currentUser.json');
+    username = currentUserGlobal.username;
+    address = currentUserGlobal.addrLine1;
+    city = currentUserGlobal.city;
+    state = currentUserGlobal.state;
+    zipcode = currentUserGlobal.zip;
 
+    var gallons = req.body.gallonsR;
+    var date = req.body.deliveryDate;
+
+    var currentPrice = 1.50
+    var locationFactor = .02 // .02 for texas and .04 for another state 
+    if(state == "TX")
+    {
+        locationFactor = 0.02
+    }
+    else 
+    {
+        locationFactor = 0.04
+    }
+    
+    var rateHistory = 0 //.01 if history and .00 if no history
+    if (fq.isInQuotes(username, copyOfQuotes, 0) == 1)
+    {
+        rateHistory = .01
+        console.log("User was there")
+    }
+    
+    var companyProfitFactor = .10 //constant
+    
+    //var margin = currentPrice * (locationFactor - rateHistory + gallonsRegFactor + companyProfitFactor)
+    //var suggPrice = currentPrice + margin
+    var coeff = fq.calcCoeffWithoutGal(rateHistory, locationFactor, .1);
+    console.log(coeff);
+    var copyOfCurrentUser = require('./currentUser.json');
     // copyOfCurrentUser.forEach(function(objPeople)
     // {
     //     address = objPeople.addrLine1;
@@ -403,17 +441,15 @@ app.post('/clientProfileName', function(req,res)
 
     // });
 
-    address = currentUserGlobal.addrLine1;
-    city = currentUserGlobal.city;
-    state = currentUserGlobal.state;
-    zipcode = currentUserGlobal.zip;
 
     res.render('pages/fuelQuoteForm',
     {
-        address: globalAddy,
+        address: address,
         city: city,
         state: state,
-        zipcode: zipcode
+        zipcode: zipcode,
+        coeff: coeff
+
     });
  });
 
@@ -495,11 +531,7 @@ app.get('/fuelQuoteHistory', function(req, res)
             quoteHist:quoteHist
         });
     });
-
-   
-    
-
-    
+  
 });
 
 //** CLIENT REGISTRATION GET FUNCTION **//////////////////////////////////////////////////
