@@ -1,6 +1,7 @@
 const reg = require("./register");
 const login = require("./login");
 const fq = require("./fuelQuote");
+const enPass = require("./register");
 let globalAddy = "global addy";
 let quotesArray = require('./quotes.json');
 
@@ -55,6 +56,15 @@ app.post('/register', function(req,res)
     var username = req.body.username;
     var psw = req.body.psw;
     var pswCheck = req.body.pswCheck;
+    var numberEncrypt = 5;
+
+    console.log("Password: ", psw);
+
+    var encryptedPassword = enPass.encrypt(psw, numberEncrypt);
+    console.log("Cipher Encrypted Password:", encryptedPassword);
+    var numberDecrypt = 26 - numberEncrypt;
+    var decryptedPassword = enPass.encrypt(encryptedPassword, numberDecrypt);
+    console.log("Cipher Decrypted Password:", decryptedPassword);
 
 	var data = {
         "username":username,
