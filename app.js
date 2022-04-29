@@ -2,6 +2,7 @@ const reg = require("./register");
 const login = require("./login");
 const fq = require("./fuelQuote");
 let globalAddy = "global addy";
+let globalUsername = "";
 let quotesArray = require('./quotes.json');
 
 let currentUserGlobal = 
@@ -107,6 +108,8 @@ app.post('/login', function(req,res)
     var state = "";
     var zip = "";
 
+    globalUsername = uname;
+
     console.log("username:" + uname + " password: " + pswd);
 
     const copyOfUserdataCollection = require('./userdata.json');
@@ -123,7 +126,7 @@ app.post('/login', function(req,res)
                 addrLine1 = objPeople.addrLine1; 
                 addrLine2 = objPeople.addrLine2;
                 city = objPeople.city;
-                state = objPeople.city;
+                state = objPeople.state;
                 zip = objPeople.zip;
             }
         });
@@ -507,12 +510,12 @@ app.get('/finalSubmissionForm', function(req, res){
 app.get('/fuelQuoteHistory', function(req, res)
 {
     // assigning the username that's found in currentUser
-    const copyOfCurrentUser = require('./currentUser.json');
-    var username = "";
-    copyOfCurrentUser.forEach(function(objPeople)
-    {
-        username = objPeople.username;
-    });
+    //const copyOfCurrentUser = require('./currentUser.json');
+    var username = globalUsername;
+    // copyOfCurrentUser.forEach(function(objPeople)
+    // {
+    //     username = objPeople.username;
+    // });
 
     var query = { username: username };
     const quoteHist = [];
